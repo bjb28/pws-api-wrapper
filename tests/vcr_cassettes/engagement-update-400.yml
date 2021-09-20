@@ -1,0 +1,59 @@
+interactions:
+- request:
+    body: '{"name": "Engagement 1", "notes": "<strong>Test 1</strong>", "client_id":
+      "123", "created_at": "2021-02-05T19:59:27.104Z"}'
+    headers:
+      Content-Length:
+      - '122'
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - s8yFusxuZuekzMYHz642yZf7gwauHpQJ
+      accept:
+      - application/json
+    method: PUT
+    uri: https://pentest.ws/api/v1/e/7aBB7za9
+  response:
+    body:
+      string: '{"msg":"Invalid client_id"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 69048c9149651831-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '27'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 17 Sep 2021 18:55:29 GMT
+      Etag:
+      - W/"1b-u9VnmJBkdwTF/nR9lpK8WmMUxBs"
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=mswc92BvZtEm%2F2k26xS8aDacUgRcYH81nXSaQeSpN4%2BSidrWv9wUQXVLcFI%2BFEoXhc5Vii8qLowoaN6NIw8VGohFu8R%2FMJpAuu5jdDk%2Bg2Mwi9M1NrwT54NDZJ0%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 400
+      message: Bad Request
+version: 1

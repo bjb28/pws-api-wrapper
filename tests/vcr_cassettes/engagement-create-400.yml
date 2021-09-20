@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: '{"notes": "<strong>Test 1</strong>", "client_id": "", "test_str": "str"}'
+    headers:
+      Content-Length:
+      - '72'
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - s8yFusxuZuekzMYHz642yZf7gwauHpQJ
+      accept:
+      - application/json
+    method: POST
+    uri: https://pentest.ws/api/v1/e
+  response:
+    body:
+      string: '{"msg":"Missing name"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 6903f83a6f4817d9-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '22'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 17 Sep 2021 17:14:13 GMT
+      Etag:
+      - W/"16-OXEEDjowXgEZKCuvUBePakWvq4I"
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=fVICJiELKZZbbc1tNfrWi31k%2F5B3mUOqXVzOSkfWj%2Fz3sEn%2B9Kj70PDHSeVEcsh2TqKtA7CCRrVdzW4MM0%2FY1m0sh2Bd6KwXOgQv05TnwH3RQ9Dk05RyU2ynSII%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 400
+      message: Bad Request
+version: 1
