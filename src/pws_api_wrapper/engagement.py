@@ -17,12 +17,12 @@ class Engagement(AbstractEndpoint):
     """Engagement Objects for Pentest.ws API.
 
     Attributes:
+        archived (datetime): The date and time the engagement was archived in pentest.ws.
+        client_id (str): The id for the client in pentest.ws.
+        created_at (datetime): The date and time the engagement was created in pentest.ws.
         id (str): The edi from pentest.ws.
         name (str): The name of the engagement.
         notes (str): The notes about the engagement.
-        client_id (str): The id for the client in pentest.ws.
-        created_at (datetime): The date and time the engagement was created in pentest.ws.
-        archived (datetime): The date and time the engagement was archived in pentest.ws.
 
     Args:
         AbstractEndpoint ([type]): [description]
