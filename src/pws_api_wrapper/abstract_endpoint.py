@@ -30,9 +30,13 @@ class AbstractEndpoint(object):
                 # Strip last three digits of microseconds and add the Z.
                 time = f"{time[:-3]}Z"
                 dictionary[attribute] = time
-            elif isinstance(getattr(self, attribute), str) and not attribute.startswith(
-                "__"
+            elif (
+                isinstance(getattr(self, attribute), str)
+                and not attribute.startswith("__")
+                and attribute != "path"
             ):
+                dictionary[attribute] = getattr(self, attribute)
+            elif isinstance(getattr(self, attribute), bool):
                 dictionary[attribute] = getattr(self, attribute)
 
         return dictionary
