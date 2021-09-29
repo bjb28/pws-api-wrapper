@@ -4,7 +4,7 @@
 # Third-Party Libraries
 import pytest
 from schema import SchemaError
-
+import vcr
 
 # Custom Libraries
 from pws_api_wrapper import Host
@@ -35,6 +35,9 @@ class TestHost:
             ("board_id", 4, '"board_id" should be 8 alphanumeric characters'),
             ("board_id", "asd123", '"board_id" should be 8 alphanumeric characters'),
             ("board_id", "abcd123!", '"board_id" should be 8 alphanumeric characters'),
+            ("eid", 4, '"eid" should be 8 alphanumeric characters'),
+            ("eid", "asd123", '"eid" should be 8 alphanumeric characters'),
+            ("eid", "abcd123!", '"eid" should be 8 alphanumeric characters'),
             ("flagged", 1, '"flagged" should be True/False boolean'),
             ("hostnames", 1, '"hostnames" should be a string'),
             ("id", 4, '"id" should be 8 alphanumeric characters'),
@@ -45,6 +48,7 @@ class TestHost:
             ("os", 1, '"os" should be a string'),
             ("os_type", 1, '"os_type" should be a string'),
             ("out_of_scope", 1, '"out_of_scope" should be True/False boolean'),
+            ("owned", 1, '"owned" should be True/False boolean'),
             ("reviewed", 1, '"reviewed" should be True/False boolean'),
             ("shell", "1", '"shell" should be True/False boolean'),
             ("thumbs_down", 2, '"thumbs_down" should be True/False boolean'),
@@ -54,7 +58,6 @@ class TestHost:
     )
     def test_init_validation_fail(self, attribute, value, error_message, host_dict):
         """Test the init validation fails when string value are not strings."""
-
         host_dict[attribute] = value
         with pytest.raises(SchemaError, match=error_message):
             Host(**host_dict)
@@ -79,7 +82,13 @@ class TestHost:
     )
     def test_init_validation_target_fail(self, value, host_dict):
         """Test the init validation fails when string value are not strings."""
-
         host_dict["target"] = value
         with pytest.raises(SchemaError, match="Target should be a valid IPv4 Address"):
             Host(**host_dict)
+
+    @vcr.use_cassette("tests/vcr_cassettes/host-get-all.yml")
+    def test_get_all(self, engagement_object_no_archived):
+        """Test an API call to create an Engagement."""
+        host = Host.get_all(engagement_object_no_archived.id)
+
+        assert len(host) == 3

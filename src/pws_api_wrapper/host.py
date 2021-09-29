@@ -1,13 +1,16 @@
 """Host Object."""
 
+from __future__ import annotations
+
 # Standard Python Libraries
 from ipaddress import ip_address
 import re
 import sys
-from typing import Any, Dict
+from typing import Any
 
 # Third-Party Libraries
-from schema import And, Schema, SchemaError, Optional, Regex, Use
+from requests.models import Response
+from schema import And, Optional, Or, Regex, Schema, SchemaError, Use
 
 # Customer Libraries
 from .abstract_endpoint import AbstractEndpoint
@@ -44,6 +47,11 @@ class Host(AbstractEndpoint):
                     Regex(r"^[a-zA-Z0-9]{8,}$", flags=re.IGNORECASE),
                     error='"board_id" should be 8 alphanumeric characters',
                 ),
+                Optional("eid"): And(
+                    str,
+                    Regex(r"^[a-zA-Z0-9]{8,}$", flags=re.IGNORECASE),
+                    error='"eid" should be 8 alphanumeric characters',
+                ),
                 Optional("flagged"): And(
                     bool, error='"flagged" should be True/False boolean'
                 ),
@@ -53,12 +61,21 @@ class Host(AbstractEndpoint):
                     Regex(r"^[a-zA-Z0-9]{8,}$", flags=re.IGNORECASE),
                     error='"id" should be 8 alphanumeric characters',
                 ),
-                Optional("label"): And(str, error='"label" should be a string.'),
-                Optional("notes"): And(str, error='"notes" should be a string'),
-                Optional("os"): And(str, error='"os" should be a string'),
-                Optional("os_type"): And(str, error='"os_type" should be a string'),
+                Optional("label"): Or(
+                    And(str, error='"label" should be a string.'), None
+                ),
+                Optional("notes"): Or(
+                    And(str, error='"notes" should be a string'), None
+                ),
+                Optional("os"): Or(And(str, error='"os" should be a string'), None),
+                Optional("os_type"): Or(
+                    And(str, error='"os_type" should be a string'), None
+                ),
                 Optional("out_of_scope"): And(
                     bool, error='"out_of_scope" should be True/False boolean'
+                ),
+                Optional("owned"): And(
+                    bool, error='"owned" should be True/False boolean'
                 ),
                 Optional("reviewed"): And(
                     bool, error='"reviewed" should be True/False boolean'
@@ -77,12 +94,12 @@ class Host(AbstractEndpoint):
                 Optional("thumbs_up"): And(
                     bool, error='"thumbs_up" should be True/False boolean'
                 ),
-                Optional("type"): And(str, error='"type" should be a string'),
+                Optional("type"): Or(And(str, error='"type" should be a string'), None),
             }
         )
 
         try:
-            validated_args: Dict[str, Any] = schema.validate(kwargs)
+            validated_args: dict[str, Any] = schema.validate(kwargs)
         except SchemaError as err:
             # Raise error because 1 or more items were invald.
             print(err, file=sys.stderr)
@@ -91,3 +108,16 @@ class Host(AbstractEndpoint):
         for key, value in validated_args.items():
             setattr(self, key, value)
         self.path: str = f"{AbstractEndpoint.path}/hosts/{id}"
+
+    @staticmethod
+    def get_all(eid: str) -> list[Host]:
+        """Get all hosts from an Engagements."""
+        response: Response = Host.pws_session.get(
+            f"{AbstractEndpoint.path}/e/{eid}/hosts"
+        )
+        hosts: list[Host] = list()
+
+        for host_response in response.json():
+            hosts.append(Host(**host_response))
+
+        return hosts

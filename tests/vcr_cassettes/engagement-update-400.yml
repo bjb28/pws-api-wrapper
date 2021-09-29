@@ -8,7 +8,7 @@ interactions:
       Content-Type:
       - application/json
       X-API-KEY:
-      - s8yFusxuZuekzMYHz642yZf7gwauHpQJ
+      - SecretAPIKey
       accept:
       - application/json
     method: PUT

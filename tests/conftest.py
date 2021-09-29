@@ -90,6 +90,7 @@ def host_dict():
     return {
         "target": "1.2.3.4",
         "board_id": "abcd1234",
+        "eid": "abcd1234",
         "flagged": True,
         "hostnames": "host",
         "id": "abcd1234",
@@ -98,6 +99,7 @@ def host_dict():
         "os": "OS",
         "os_type": "Server",
         "out_of_scope": True,
+        "owned": False,
         "reviewed": True,
         "shell": True,
         "thumbs_down": True,
