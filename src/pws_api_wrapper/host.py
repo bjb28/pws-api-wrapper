@@ -15,6 +15,28 @@ from schema import And, Optional, Or, Regex, Schema, SchemaError, Use
 # Customer Libraries
 from .abstract_endpoint import AbstractEndpoint
 
+OS_TYPES: list[tuple[str, str]] = [
+    ("Android", "Android"),
+    ("Apple", "Apple"),
+    ("Linux", "Linux"),
+    ("question", "Unknown"),
+    ("Windows", "Windows"),
+]
+TYPES: list[tuple[str, str]] = [
+    ("wifi", "Access Point"),
+    ("volume-up", "Audio"),
+    ("laptop", "Laptop"),
+    ("mobile", "Mobile"),
+    ("phone", "Phone"),
+    ("printer", "Printer"),
+    ("question", "Unknown"),
+    ("sitemap", "Router"),
+    ("server", "Server"),
+    ("tablet", "Tablet"),
+    ("tv", "TV"),
+    ("desktop", "Workstation"),
+]
+
 
 class Host(AbstractEndpoint):
     """Host Objects for Pentest.ws API.
@@ -68,8 +90,16 @@ class Host(AbstractEndpoint):
                     And(str, error='"notes" should be a string'), None
                 ),
                 Optional("os"): Or(And(str, error='"os" should be a string'), None),
-                Optional("os_type"): Or(
-                    And(str, error='"os_type" should be a string'), None
+                Optional("os_type"): And(
+                    str,
+                    Or(
+                        lambda submitted_os_type: submitted_os_type
+                        in [os_type[0] for os_type in OS_TYPES],
+                        lambda submitted_os_type: submitted_os_type
+                        in [os_type[1] for os_type in OS_TYPES],
+                        TYPES,
+                    ),  # TODO Create a schema hook.
+                    error='Not a valid "os_type".',
                 ),
                 Optional("out_of_scope"): And(
                     bool, error='"out_of_scope" should be True/False boolean'
@@ -94,7 +124,17 @@ class Host(AbstractEndpoint):
                 Optional("thumbs_up"): And(
                     bool, error='"thumbs_up" should be True/False boolean'
                 ),
-                Optional("type"): Or(And(str, error='"type" should be a string'), None),
+                Optional("type"): And(
+                    str,
+                    Or(
+                        lambda submitted_type: submitted_type
+                        in [type[0] for type in TYPES],
+                        lambda submitted_type: submitted_type
+                        in [type[1] for type in TYPES],
+                        TYPES,
+                    ),  # TODO Create a schema hook.
+                    error='Not a valid "type".',
+                ),
             }
         )
 
