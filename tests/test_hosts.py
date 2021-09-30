@@ -46,14 +46,16 @@ class TestHost:
             ("label", 1, '"label" should be a string'),
             ("notes", 1, '"notes" should be a string'),
             ("os", 1, '"os" should be a string'),
-            ("os_type", 1, '"os_type" should be a string'),
+            ("os_type", 1, 'Not a valid "os_type".'),
+            ("os_type", "other", 'Not a valid "os_type".'),
             ("out_of_scope", 1, '"out_of_scope" should be True/False boolean'),
             ("owned", 1, '"owned" should be True/False boolean'),
             ("reviewed", 1, '"reviewed" should be True/False boolean'),
             ("shell", "1", '"shell" should be True/False boolean'),
             ("thumbs_down", 2, '"thumbs_down" should be True/False boolean'),
             ("thumbs_up", 1, '"thumbs_up" should be True/False boolean'),
-            ("type", 1, '"type" should be a string'),
+            ("type", 1, 'Not a valid "type".'),
+            ("type", "Something", 'Not a valid "type".'),
         ],
     )
     def test_init_validation_fail(self, attribute, value, error_message, host_dict):
