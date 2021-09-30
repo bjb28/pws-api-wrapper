@@ -93,7 +93,7 @@ def host_dict():
         "eid": "ZaAvk46j",
         "flagged": True,
         "hostnames": "host",
-        "id": "abcd1234",
+        "id": "No3e25l6",
         "label": "label",
         "notes": "Note",
         "os": "OS",

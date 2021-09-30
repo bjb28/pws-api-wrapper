@@ -1,0 +1,114 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: GET
+    uri: https://pentest.ws/api/v1/hosts/abcd1234
+  response:
+    body:
+      string: Not Found
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 696fd8e60a600cb5-EWR
+      Cache-Control:
+      - no-store
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '9'
+      Content-Type:
+      - text/plain; charset=utf-8
+      Date:
+      - Thu, 30 Sep 2021 19:27:12 GMT
+      Etag:
+      - W/"9-0gXL1ngzMqISxa6S1zx3F4wtLyg"
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=khGercgluMJvlBT%2FCxOw3EcojLHwHkPQiYcmT4n9ZA6XAHzgQzjh5rEaK9GZnWXoaVX3g%2Bef3abNR8Dl0o6BrhUZh2ilPjpWia%2Fxvh0uTAOJylVdREqBcrWnk%2FQ%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 404
+      message: Not Found
+- request:
+    body: null
+    headers:
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - s8yFusxuZuekzMYHz642yZf7gwauHpQJ
+      accept:
+      - application/json
+    method: GET
+    uri: https://pentest.ws/api/v1/hosts/abcd1234
+  response:
+    body:
+      string: Not Found
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 696fdb7348150cb5-EWR
+      Cache-Control:
+      - no-store
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '9'
+      Content-Type:
+      - text/plain; charset=utf-8
+      Date:
+      - Thu, 30 Sep 2021 19:28:56 GMT
+      Etag:
+      - W/"9-0gXL1ngzMqISxa6S1zx3F4wtLyg"
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=UQR9P%2Fi77o5FTGmGrpIS8sqjCqB9Oejz%2Fl4ecCIK9nh2xC3CcgHB%2BfpQaINRM6kjh0D25B5N4kh9x0M2Ygci%2F3HbibVRDMqWQHPbW4njwNdZ1tNCYMQA4RAmzuk%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 404
+      message: Not Found
+version: 1

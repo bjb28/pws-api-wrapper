@@ -119,9 +119,23 @@ class TestHost:
         assert isinstance(host, Host)
         assert message == "Error: Invalid board_id: abcd1234"
 
+    @vcr.use_cassette("tests/vcr_cassettes/host-get-200.yml")
+    def test_get_200(self, host_dict):
+        """Test an API call to get a host."""
+        host = Host.get("No3e25l6")
+
+        assert isinstance(host, Host)
+        assert host.to_dict() == host_dict
+
+    @vcr.use_cassette("tests/vcr_cassettes/host-get-400.yml")
+    def test_get_400(self):
+        """Test an API call to get a host that returns an error."""
+        with pytest.raises(SystemExit):
+            Host.get("abcd1234")
+
     @vcr.use_cassette("tests/vcr_cassettes/host-get-all.yml")
     def test_get_all(self, engagement_object_no_archived):
-        """Test an API call to create an Engagement."""
+        """Test an API call to get all hosts for an Engagement."""
         host = Host.get_all(engagement_object_no_archived.id)
 
         assert len(host) == 3

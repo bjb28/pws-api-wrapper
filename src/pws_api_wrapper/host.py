@@ -10,6 +10,7 @@ import sys
 from typing import Any
 
 # Third-Party Libraries
+from requests import exceptions as requests_exceptions
 from requests.models import Response
 from schema import And, Optional, Or, Regex, Schema, SchemaError, Use
 
@@ -180,6 +181,20 @@ class Host(AbstractEndpoint):
             message = f"Error: {response.json()['msg']}"
 
         return message
+
+    @staticmethod
+    def get(hid: str) -> Host:
+        """Get a hosts from the API.."""
+        # TODO Custom Exception (Issue 1)
+        try:
+            response: Response = Host.pws_session.get(
+                f"{AbstractEndpoint.path}/hosts/{hid}"
+            )
+            response.raise_for_status()
+        except requests_exceptions.HTTPError as err:
+            raise SystemExit(err)
+        else:
+            return Host(**response.json())
 
     @staticmethod
     def get_all(eid: str) -> list[Host]:
