@@ -33,7 +33,7 @@ class AbstractEndpoint(object):
             elif (
                 isinstance(getattr(self, attribute), str)
                 and not attribute.startswith("__")
-                and attribute != "path"
+                and not attribute.endswith("path")
             ):
                 dictionary[attribute] = getattr(self, attribute)
             elif isinstance(getattr(self, attribute), bool):
