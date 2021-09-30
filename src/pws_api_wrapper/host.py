@@ -183,6 +183,20 @@ class Host(AbstractEndpoint):
 
         return message
 
+    def delete(self) -> str:
+        """Delete a host by id from pentest.ws API."""
+        response: Response = self.pws_session.delete(f"{self.host_path}")
+
+        # TODO Custom Exception (Issue 1)
+        if response.status_code == 200:
+            # FIXME The next line is flagged by mypy for Host not having an attribute "target".
+            message: str = f"Host {self.target} ({self.id}) deleted."  # type: ignore
+        elif response.status_code == 404:
+            # FIXME The next line is flagged by mypy for Host not having an attribute "target".
+            message = f"Error: Host {self.target} ({self.id}) not found"  # type: ignore
+
+        return message
+
     @staticmethod
     def get(hid: str) -> Host:
         """Get a hosts from the API.."""
