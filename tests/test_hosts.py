@@ -88,6 +88,37 @@ class TestHost:
         with pytest.raises(SchemaError, match="Target should be a valid IPv4 Address"):
             Host(**host_dict)
 
+    @vcr.use_cassette("tests/vcr_cassettes/host-create-200.yml")
+    def test_create_200(self, host_dict):
+        """Test an API call to create an Engagement."""
+        # Delete board_id as it does not appear to come from the API yet.
+        # FIXME This should be removed once the API returns it.
+        del host_dict["board_id"]
+
+        # Delete id as the API will not accept when creating.
+        del host_dict["id"]
+
+        host = Host(**host_dict)
+
+        message = host.create()
+
+        # Add host ID back to host_dict
+        host_dict["id"] = host.id
+
+        assert isinstance(host, Host)
+        assert host.to_dict() == host_dict
+        assert message == "Host 1.2.3.4 (No3e25l6) created."
+
+    @vcr.use_cassette("tests/vcr_cassettes/host-create-400.yml")
+    def test_engagement_create_400(self, host_dict):
+        """Test an API call to create an Engagement with missing object."""
+        host = Host(**host_dict)
+
+        message = host.create()
+
+        assert isinstance(host, Host)
+        assert message == "Error: Invalid board_id: abcd1234"
+
     @vcr.use_cassette("tests/vcr_cassettes/host-get-all.yml")
     def test_get_all(self, engagement_object_no_archived):
         """Test an API call to create an Engagement."""

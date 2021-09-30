@@ -90,7 +90,7 @@ def host_dict():
     return {
         "target": "1.2.3.4",
         "board_id": "abcd1234",
-        "eid": "abcd1234",
+        "eid": "ZaAvk46j",
         "flagged": True,
         "hostnames": "host",
         "id": "abcd1234",

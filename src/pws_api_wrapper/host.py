@@ -4,6 +4,7 @@ from __future__ import annotations
 
 # Standard Python Libraries
 from ipaddress import ip_address
+import json
 import re
 import sys
 from typing import Any
@@ -147,7 +148,36 @@ class Host(AbstractEndpoint):
 
         for key, value in validated_args.items():
             setattr(self, key, value)
-        self.path: str = f"{AbstractEndpoint.path}/hosts/{id}"
+
+        try:
+            self.host_path: str = f"{AbstractEndpoint.path}/hosts/{self.id}"
+        except AttributeError:
+            pass
+
+        if self.eid:
+            self.engagement_path: str = f"{AbstractEndpoint.path}/e/{self.eid}/hosts"
+
+    def create(self) -> str:
+        """Create an Host in pentest.ws."""
+        self.pws_session.headers["Content-Type"] = "application/json"
+
+        # Convert to dict to remove eid before json dump, API does not accept eid.
+        host_dict: dict = self.to_dict()
+        del host_dict["eid"]  # Drop eid as the API does not accept it.
+
+        host_data: str = json.dumps(host_dict)
+
+        response: Response = self.pws_session.post(
+            self.engagement_path, headers=self.pws_session.headers, data=host_data
+        )
+
+        if response.status_code == 200:
+            self.id = response.json()["id"]
+            message: str = f"Host {self.target} ({self.id}) created."  # type: ignore
+        elif response.status_code == 400:
+            message = f"Error: {response.json()['msg']}"
+
+        return message
 
     @staticmethod
     def get_all(eid: str) -> list[Host]:

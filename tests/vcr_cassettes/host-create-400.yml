@@ -1,0 +1,61 @@
+interactions:
+- request:
+    body: '{"target": "1.2.3.4", "board_id": "abcd1234", "eid": "ZaAvk46j", "flagged":
+      true, "hostnames": "host", "id": "abcd1234", "label": "label", "notes": "Note",
+      "os": "OS", "os_type": "Server", "out_of_scope": true, "owned": false, "reviewed":
+      true, "shell": true, "thumbs_down": true, "thumbs_up": true, "type": "Type"}'
+    headers:
+      Content-Length:
+      - '315'
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: POST
+    uri: https://pentest.ws/api/v1/e/ZaAvk46j/hosts
+  response:
+    body:
+      string: '{"msg":"Invalid board_id: abcd1234"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 6969bacfadc132c7-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '36'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 30 Sep 2021 01:38:05 GMT
+      Etag:
+      - W/"24-PhU+lBOu1BG89iOmajjthHbNdBc"
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=YWyCQ4CpWCj2Rvo48rbu2XRAHs5oW3swYV8rh6dDrcrjVo6OWXg7o84OQxjC0wyAg9XGXJHZIn7gkVbs6wLHNM4r1SMSh9lN%2BKDIdlOE0Uln%2BG%2Bkkfw0mytN34A%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 400
+      message: Bad Request
+version: 1
