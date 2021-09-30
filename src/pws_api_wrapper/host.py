@@ -167,10 +167,12 @@ class Host(AbstractEndpoint):
 
         host_data: str = json.dumps(host_dict)
 
+        # TODO Custom Exception (Issue 1)
         response: Response = self.pws_session.post(
             self.engagement_path, headers=self.pws_session.headers, data=host_data
         )
 
+        # TODO Custom Exception (Issue 1)
         if response.status_code == 200:
             self.id = response.json()["id"]
             message: str = f"Host {self.target} ({self.id}) created."  # type: ignore
@@ -182,6 +184,7 @@ class Host(AbstractEndpoint):
     @staticmethod
     def get_all(eid: str) -> list[Host]:
         """Get all hosts from an Engagements."""
+        # TODO Custom Exception (Issue 1)
         response: Response = Host.pws_session.get(
             f"{AbstractEndpoint.path}/e/{eid}/hosts"
         )
