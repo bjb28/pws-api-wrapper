@@ -176,6 +176,7 @@ class Host(AbstractEndpoint):
         # TODO Custom Exception (Issue 1)
         if response.status_code == 200:
             self.id = response.json()["id"]
+            # FIXME The next line is flagged by mypy for Host not having an attribute "target".
             message: str = f"Host {self.target} ({self.id}) created."  # type: ignore
         elif response.status_code == 400:
             message = f"Error: {response.json()['msg']}"
@@ -209,3 +210,28 @@ class Host(AbstractEndpoint):
             hosts.append(Host(**host_response))
 
         return hosts
+
+    def update(self) -> str:
+        """Update a Host."""
+        self.pws_session.headers["Content-Type"] = "application/json"
+
+        data = self.to_dict()
+        # TODO Make these field meta data.
+        del data["id"]
+        del data["eid"]
+
+        # TODO Custom Exception (Issue 1)
+        response: Response = self.pws_session.put(
+            f"{self.host_path}",
+            headers=self.pws_session.headers,
+            data=json.dumps(data),
+        )
+
+        # TODO Custom Exception (Issue 1)
+        if response.status_code == 200:
+            # FIXME The next line is flagged by mypy for Host not having an attribute "target".
+            message: str = f"Host {self.target} ({self.id}) updated."  # type: ignore
+        elif response.status_code == 400:
+            message = f"Error: {response.json()['msg']}"
+
+        return message

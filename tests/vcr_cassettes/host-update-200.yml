@@ -1,0 +1,61 @@
+interactions:
+- request:
+    body: '{"target": "1.2.3.4", "flagged": true, "hostnames": "host", "label": "New
+      Label", "notes": "Note", "os": "OS", "os_type": "Linux", "out_of_scope": true,
+      "owned": false, "reviewed": true, "shell": true, "thumbs_down": true, "thumbs_up":
+      true, "type": "Unknown"}'
+    headers:
+      Content-Length:
+      - '260'
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: PUT
+    uri: https://pentest.ws/api/v1/hosts/No3e25l6
+  response:
+    body:
+      string: OK
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 697133459ef615cb-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - text/plain; charset=utf-8
+      Date:
+      - Thu, 30 Sep 2021 23:23:39 GMT
+      Etag:
+      - W/"2-nOO9QiTIwXgNtWtBJezz8kv3SLc"
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=UmSYu7lenuGIlMMArsBWJo563r%2F4ordEJCs5a9V66qkKmKKo4Rc6iFOlsUxzyXOL8lAD4r%2B1J7FeaBN7ses5O2JUae%2BrXiBc6e7bQpUz53bh0bZr%2FOcpFS5hVJg%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

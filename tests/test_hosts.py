@@ -139,3 +139,29 @@ class TestHost:
         host = Host.get_all(engagement_object_no_archived.id)
 
         assert len(host) == 3
+
+    @vcr.use_cassette("tests/vcr_cassettes/host-update-200.yml")
+    def test_update_200(self, host_dict):
+        """Test an API call to put an update to a Host."""
+        host_dict["label"] = "New Label"
+
+        # FIXME This should be removed once the API returns it.
+        del host_dict["board_id"]
+
+        host = Host(**host_dict)
+
+        message = host.update()
+
+        assert isinstance(host, Host)
+        assert host.to_dict() == host_dict
+        assert message == "Host 1.2.3.4 (No3e25l6) updated."
+
+    @vcr.use_cassette("tests/vcr_cassettes/host-update-400.yml")
+    def test_host_update_400(self, host_dict):
+        """Test an API call to create an Engagement with missing object."""
+        host = Host(**host_dict)
+
+        message = host.update()
+
+        assert isinstance(host, Host)
+        assert message == "Error: Invalid board_id: abcd1234"
