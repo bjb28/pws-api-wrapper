@@ -17,12 +17,12 @@ class Engagement(AbstractEndpoint):
     """Engagement Objects for Pentest.ws API.
 
     Attributes:
+        archived (datetime): The date and time the engagement was archived in pentest.ws.
+        client_id (str): The id for the client in pentest.ws.
+        created_at (datetime): The date and time the engagement was created in pentest.ws.
         id (str): The edi from pentest.ws.
         name (str): The name of the engagement.
         notes (str): The notes about the engagement.
-        client_id (str): The id for the client in pentest.ws.
-        created_at (datetime): The date and time the engagement was created in pentest.ws.
-        archived (datetime): The date and time the engagement was archived in pentest.ws.
 
     Args:
         AbstractEndpoint ([type]): [description]
@@ -73,6 +73,7 @@ class Engagement(AbstractEndpoint):
         """Delete an Engagement by name from pentest.ws API."""
         response: Response = Engagement.pws_session.delete(f"{self.path}/{self.id}")
 
+        # TODO Custom Exception (Issue 1)
         if response.status_code == 200:
             message: str = f"Engagement {self.name} ({self.id}) deleted."
         elif response.status_code == 404:
@@ -88,6 +89,7 @@ class Engagement(AbstractEndpoint):
             self.path, headers=self.pws_session.headers, data=json.dumps(self.to_dict())
         )
 
+        # TODO Custom Exception (Issue 1)
         if response.status_code == 200:
             self.id = response.json()["id"]
             message: str = f"Engagement {self.name} ({self.id}) created."
@@ -100,6 +102,7 @@ class Engagement(AbstractEndpoint):
     def get(name: str) -> Engagement:
         """Get an Engagement by name from pentest.ws API."""
         eid: str = Engagement.get_eid(name)
+        # TODO Custom Exception (Issue 1)
         response: Response = Engagement.pws_session.get(f"{Engagement.path}/{eid}")
 
         return Engagement(**response.json())
@@ -107,6 +110,7 @@ class Engagement(AbstractEndpoint):
     @staticmethod
     def get_all() -> list[dict[str, Any]]:
         """Get all Engagements."""
+        # TODO Custom Exception (Issue 1)
         response: Response = Engagement.pws_session.get(Engagement.path)
 
         return response.json()
@@ -117,6 +121,7 @@ class Engagement(AbstractEndpoint):
         # TODO Handled multiple Engagements with the same name
         engagements: list[dict[str, Any]] = Engagement.get_all()
 
+        # TODO Custom Exception (Issue 1)
         eid: str = list(
             filter(lambda engagement: engagement["name"] == name, engagements)
         )[0]["id"]
@@ -133,12 +138,14 @@ class Engagement(AbstractEndpoint):
         del data["created_at"]
         del data["archived"]
 
+        # TODO Custom Exception (Issue 1)
         response: Response = self.pws_session.put(
             f"{self.path}/{self.id}",
             headers=self.pws_session.headers,
             data=json.dumps(data),
         )
 
+        # TODO Custom Exception (Issue 1)
         if response.status_code == 200:
             message: str = f"Engagement {self.name} ({self.id}) updated."
         elif response.status_code == 400:

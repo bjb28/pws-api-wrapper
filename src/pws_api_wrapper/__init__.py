@@ -6,4 +6,5 @@
 from ._version import __version__  # noqa: F401
 from .abstract_endpoint import AbstractEndpoint  # noqa: F401
 from .engagement import Engagement  # noqa: F401
+from .host import Host  # noqa: F401
 from .session import APIKeyMissingError, get_api_key, session  # noqa: F401

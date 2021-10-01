@@ -1,42 +1,39 @@
 interactions:
 - request:
-    body: '{"name": "Engagement 1", "notes": "<strong>Test 1</strong>", "client_id":
-      "123", "created_at": "2021-02-05T19:59:27.104Z"}'
+    body: null
     headers:
-      Content-Length:
-      - '122'
-      Content-Type:
-      - application/json
       X-API-KEY:
       - SecretAPIKey
       accept:
       - application/json
-    method: PUT
-    uri: https://pentest.ws/api/v1/e/7aBB7za9
+    method: GET
+    uri: https://pentest.ws/api/v1/hosts/No3e25l6
   response:
     body:
-      string: '{"msg":"Invalid client_id"}'
+      string: '{"id":"No3e25l6","target": "1.2.3.4", "board_id": "abcd1234", "eid": "ZaAvk46j", "flagged": true, "hostnames": "host", "label": "label", "notes": "Note", "os": "OS", "os_type": "Linux", "out_of_scope": true, "owned": false, "reviewed": true, "shell": true, "thumbs_down": true, "thumbs_up": true, "type": "Unknown"}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 69048c9149651831-EWR
+      - 6957232b0842191b-EWR
+      Cache-Control:
+      - no-store
       Connection:
       - keep-alive
       Content-Length:
-      - '27'
+      - '3135'
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 17 Sep 2021 18:55:29 GMT
+      - Mon, 27 Sep 2021 19:28:50 GMT
       Etag:
-      - W/"1b-u9VnmJBkdwTF/nR9lpK8WmMUxBs"
+      - W/"c3f-3Ng4P9jAGc5LjVZQgk5UOlPC84w"
       Expect-CT:
       - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=mswc92BvZtEm%2F2k26xS8aDacUgRcYH81nXSaQeSpN4%2BSidrWv9wUQXVLcFI%2BFEoXhc5Vii8qLowoaN6NIw8VGohFu8R%2FMJpAuu5jdDk%2Bg2Mwi9M1NrwT54NDZJ0%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=e0hy5e6WavsqxDtumlMiP4lwMBdlkpz7Wdhr7zJSpxXi9nrseD3fs%2B%2FFrC%2Fas%2BWAasTipfISYwUqyNGepwcOdnyHf7O7rzMIxqOhQHaT8aSztXTpuiKoes4e3hM%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -54,6 +51,6 @@ interactions:
       X-Xss-Protection:
       - 1; mode=block
     status:
-      code: 400
-      message: Bad Request
+      code: 200
+      message: OK
 version: 1

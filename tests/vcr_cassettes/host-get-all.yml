@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: null
+    headers:
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: GET
+    uri: https://pentest.ws/api/v1/e/7aBB7za9/hosts
+  response:
+    body:
+      string: '[{"id":"MoMM4gYo","eid":"7aBB7za9","target":"10.10.11.105","hostnames":"","type":"question","os_type":"question","os":null,"label":null,"flagged":false,"reviewed":false,"thumbs_up":false,"thumbs_down":false,"out_of_scope":false,"shell":false,"owned":false,"notes":null},{"id":"YakGyV4a","eid":"7aBB7za9",
+      "target":"10.10.11.100","hostnames":"","type":"server","os_type":"Linux","os":null,"label":null,"flagged":false,"reviewed":false,"thumbs_up":false,"thumbs_down":false,"out_of_scope":false,"shell":true,"owned":true,"notes":null},{"id":"WonNJddo","eid":"7aBB7za9",
+      "target":"10.10.10.241","hostnames":"pit","type":"question","os_type":"Linux","os":"Redhat","label":null,"flagged":false,"reviewed":false,"thumbs_up":false,"thumbs_down":false,"out_of_scope":false,"shell":false,"owned":false,"notes":null}]'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 6957232b0842191b-EWR
+      Cache-Control:
+      - no-store
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '3135'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 27 Sep 2021 19:28:50 GMT
+      Etag:
+      - W/"c3f-3Ng4P9jAGc5LjVZQgk5UOlPC84w"
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=e0hy5e6WavsqxDtumlMiP4lwMBdlkpz7Wdhr7zJSpxXi9nrseD3fs%2B%2FFrC%2Fas%2BWAasTipfISYwUqyNGepwcOdnyHf7O7rzMIxqOhQHaT8aSztXTpuiKoes4e3hM%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

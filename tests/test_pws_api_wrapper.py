@@ -46,7 +46,6 @@ class TestAbstractEndpoint:
         endpoint_dict = {
             "test_str": "str",
             "datetime": "2021-02-05T19:59:27.104Z",
-            "path": "https://pentest.ws/api/v1",
         }
 
         assert endpoint.to_dict(endpoint) == endpoint_dict

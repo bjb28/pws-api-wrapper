@@ -82,3 +82,27 @@ def engagement_object_no_created_at():
         notes="<strong>Test 1</strong>",
         archived="2021-02-05T19:59:27.104Z",
     )
+
+
+@pytest.fixture
+def host_dict():
+    """Return a Host dictionary."""
+    return {
+        "target": "1.2.3.4",
+        "board_id": "abcd1234",
+        "eid": "ZaAvk46j",
+        "flagged": True,
+        "hostnames": "host",
+        "id": "No3e25l6",
+        "label": "label",
+        "notes": "Note",
+        "os": "OS",
+        "os_type": "Linux",
+        "out_of_scope": True,
+        "owned": False,
+        "reviewed": True,
+        "shell": True,
+        "thumbs_down": True,
+        "thumbs_up": True,
+        "type": "Unknown",
+    }

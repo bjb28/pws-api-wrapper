@@ -1,42 +1,41 @@
 interactions:
 - request:
-    body: '{"name": "Engagement 1", "notes": "<strong>Test 1</strong>", "client_id":
-      "123", "created_at": "2021-02-05T19:59:27.104Z"}'
+    body: null
     headers:
       Content-Length:
-      - '122'
+      - '0'
       Content-Type:
       - application/json
       X-API-KEY:
       - SecretAPIKey
       accept:
       - application/json
-    method: PUT
-    uri: https://pentest.ws/api/v1/e/7aBB7za9
+    method: DELETE
+    uri: https://pentest.ws/api/v1/hosts/No3e25l6
   response:
     body:
-      string: '{"msg":"Invalid client_id"}'
+      string: Not Found
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 69048c9149651831-EWR
+      - 697148fb3f9917e5-EWR
       Connection:
       - keep-alive
       Content-Length:
-      - '27'
+      - '9'
       Content-Type:
-      - application/json; charset=utf-8
+      - text/plain; charset=utf-8
       Date:
-      - Fri, 17 Sep 2021 18:55:29 GMT
+      - Thu, 30 Sep 2021 23:38:29 GMT
       Etag:
-      - W/"1b-u9VnmJBkdwTF/nR9lpK8WmMUxBs"
+      - W/"9-0gXL1ngzMqISxa6S1zx3F4wtLyg"
       Expect-CT:
       - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=mswc92BvZtEm%2F2k26xS8aDacUgRcYH81nXSaQeSpN4%2BSidrWv9wUQXVLcFI%2BFEoXhc5Vii8qLowoaN6NIw8VGohFu8R%2FMJpAuu5jdDk%2Bg2Mwi9M1NrwT54NDZJ0%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=IyTQHPx%2FGsou7KiN1zInKj9RXo9FqdR0L78H9Nged2fEBeL3t0fBJTq9b6tyKq7KWZL15K%2BSuY0tQo%2BUarTjtw3IpUFLOd4AWVpcgkhK7NXLNfBko9F%2BtqNTBzo%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -54,6 +53,6 @@ interactions:
       X-Xss-Protection:
       - 1; mode=block
     status:
-      code: 400
-      message: Bad Request
+      code: 404
+      message: Not Found
 version: 1

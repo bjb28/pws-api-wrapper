@@ -1,10 +1,12 @@
 interactions:
 - request:
-    body: '{"name": "Engagement 1", "notes": "<strong>Test 1</strong>", "client_id":
-      "123", "created_at": "2021-02-05T19:59:27.104Z"}'
+    body: '{"target": "1.2.3.4", "flagged": true, "hostnames": "host", "label": "New
+      Label", "notes": "Note", "os": "OS", "os_type": "Linux", "out_of_scope": true,
+      "owned": false, "reviewed": true, "shell": true, "thumbs_down": true, "thumbs_up":
+      true, "type": "Unknown"}'
     headers:
       Content-Length:
-      - '122'
+      - '260'
       Content-Type:
       - application/json
       X-API-KEY:
@@ -12,31 +14,31 @@ interactions:
       accept:
       - application/json
     method: PUT
-    uri: https://pentest.ws/api/v1/e/7aBB7za9
+    uri: https://pentest.ws/api/v1/hosts/No3e25l6
   response:
     body:
-      string: '{"msg":"Invalid client_id"}'
+      string: OK
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 69048c9149651831-EWR
+      - 697133459ef615cb-EWR
       Connection:
       - keep-alive
       Content-Length:
-      - '27'
+      - '2'
       Content-Type:
-      - application/json; charset=utf-8
+      - text/plain; charset=utf-8
       Date:
-      - Fri, 17 Sep 2021 18:55:29 GMT
+      - Thu, 30 Sep 2021 23:23:39 GMT
       Etag:
-      - W/"1b-u9VnmJBkdwTF/nR9lpK8WmMUxBs"
+      - W/"2-nOO9QiTIwXgNtWtBJezz8kv3SLc"
       Expect-CT:
       - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=mswc92BvZtEm%2F2k26xS8aDacUgRcYH81nXSaQeSpN4%2BSidrWv9wUQXVLcFI%2BFEoXhc5Vii8qLowoaN6NIw8VGohFu8R%2FMJpAuu5jdDk%2Bg2Mwi9M1NrwT54NDZJ0%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=UmSYu7lenuGIlMMArsBWJo563r%2F4ordEJCs5a9V66qkKmKKo4Rc6iFOlsUxzyXOL8lAD4r%2B1J7FeaBN7ses5O2JUae%2BrXiBc6e7bQpUz53bh0bZr%2FOcpFS5hVJg%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -54,6 +56,6 @@ interactions:
       X-Xss-Protection:
       - 1; mode=block
     status:
-      code: 400
-      message: Bad Request
+      code: 200
+      message: OK
 version: 1
