@@ -8,6 +8,8 @@ import sys
 from typing import Any
 
 # Third-Party Libraries
+from requests import exceptions as requests_exceptions
+from requests.models import Response
 from schema import And, Optional, Or, Regex, Schema, SchemaError
 
 # Customer Libraries
@@ -100,3 +102,27 @@ class Port(AbstractEndpoint):
 
         for key, value in validated_args.items():
             setattr(self, key, value)
+
+        try:
+            self.port_path: str = f"{AbstractEndpoint.path}/ports/{self.id}"
+        except AttributeError:
+            pass
+
+        if self.hid:
+            self.engagement_path: str = (
+                f"{AbstractEndpoint.path}/hosts/{self.hid}/ports"
+            )
+
+    @staticmethod
+    def get(pid: str) -> Port:
+        """Get a port from the API.."""
+        # TODO Custom Exception (Issue 1)
+        try:
+            response: Response = Port.pws_session.get(
+                f"{AbstractEndpoint.path}/ports/{pid}"
+            )
+            response.raise_for_status()
+        except requests_exceptions.HTTPError as err:
+            raise SystemExit(err)
+        else:
+            return Port(**response.json())

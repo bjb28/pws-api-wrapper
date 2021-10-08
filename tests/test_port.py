@@ -4,6 +4,7 @@
 # Third-Party Libraries
 import pytest
 from schema import SchemaError
+import vcr
 
 # Custom Libraries
 from pws_api_wrapper import Port
@@ -14,7 +15,6 @@ class TestPort:
 
     def test_init_validation_pass(self, port_dict):
         """Test the init validation."""
-
         port = Port(**port_dict)
 
         assert port.to_dict() == port_dict
@@ -49,3 +49,17 @@ class TestPort:
         port_dict[attribute] = value
         with pytest.raises(SchemaError, match=error_message):
             Port(**port_dict)
+
+    @vcr.use_cassette("tests/vcr_cassettes/port-get-200.yml")
+    def test_get_200(self, port_dict):
+        """Test an API call to get a port."""
+        port = Port.get("Da0OZnPo")
+
+        assert isinstance(port, Port)
+        assert port.to_dict() == port_dict
+
+    @vcr.use_cassette("tests/vcr_cassettes/port-get-400.yml")
+    def test_get_400(self):
+        """Test an API call to get a port that returns an error."""
+        with pytest.raises(SystemExit):
+            Port.get("abcd1234")
