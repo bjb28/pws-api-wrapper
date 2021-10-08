@@ -48,9 +48,9 @@ class Port(AbstractEndpoint):
         """Initialize port object."""
         schema: Schema = Schema(
             {
-                Optional("checklist"): And(
-                    list,
-                    [dict, {str, str}],
+                Optional("checklist"): Or(
+                    And(list, [dict, {str, str}]),
+                    None,
                     error='"checklist" should be a list of dictionaries.',
                 ),
                 Optional("hid"): And(
@@ -73,7 +73,9 @@ class Port(AbstractEndpoint):
                     And(None),
                     error='"proto" should be "tcp", "udp", or None',
                 ),
-                Optional("service"): And(str, error='"service" should be a string.'),
+                Optional("service"): Or(
+                    str, None, error='"service" should be a string.'
+                ),
                 Optional("status"): Or(  # TODO Create a schema hook.
                     And(str, lambda submitted_status: submitted_status in STATUSES),
                     And(None),
