@@ -63,3 +63,10 @@ class TestPort:
         """Test an API call to get a port that returns an error."""
         with pytest.raises(SystemExit):
             Port.get("abcd1234")
+
+    @vcr.use_cassette("tests/vcr_cassettes/port-get-all-200.yml")
+    def test_get_all(self, host_dict):
+        """Test an API call to get all hosts for an Engagement."""
+        ports = Port.get_all(host_dict["id"])
+
+        assert len(ports) == 6

@@ -128,3 +128,17 @@ class Port(AbstractEndpoint):
             raise SystemExit(err)
         else:
             return Port(**response.json())
+
+    @staticmethod
+    def get_all(hid: str) -> list[Port]:
+        """Get all ports from a Host."""
+        # TODO Custom Exception (Issue 1)
+        response: Response = Port.pws_session.get(
+            f"{AbstractEndpoint.path}/hosts/{hid}/ports"
+        )
+        ports: list[Port] = list()
+
+        for host_response in response.json():
+            ports.append(Port(**host_response))
+
+        return ports
