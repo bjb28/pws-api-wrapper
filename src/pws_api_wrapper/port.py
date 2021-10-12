@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 # Standard Python Libraries
+import json
 import re
 import sys
 from typing import Any
@@ -111,9 +112,45 @@ class Port(AbstractEndpoint):
             pass
 
         if self.hid:
-            self.engagement_path: str = (
-                f"{AbstractEndpoint.path}/hosts/{self.hid}/ports"
-            )
+            self.host_path: str = f"{AbstractEndpoint.path}/hosts/{self.hid}/ports"
+
+    def create(self) -> str:  # pragma: no cover
+        """Create an Port in pentest.ws.
+
+        FIXME 500 Internal Server Error.
+        The API will not return a 200 as non-400 errors
+        return a 500 Internal Server Error. This function
+        will have to be fixed/tested once word is received
+        from Pentest.ws.
+
+        Reminder to remove coverall exclude.
+
+        """
+        #
+        self.pws_session.headers["Content-Type"] = "application/json"
+
+        # Convert to dict to remove hid before json dump, API does not accept hid.
+        port_dict: dict = self.to_dict()
+        del port_dict["hid"]  # Drop hid as the API does not accept it.
+
+        port_data: str = json.dumps(port_dict)
+
+        # TODO Custom Exception (Issue 1)
+        response: Response = self.pws_session.post(
+            self.host_path, headers=self.pws_session.headers, data=port_data
+        )
+
+        # TODO Custom Exception (Issue 1)
+        if response.status_code == 200:
+            self.id = response.json()["id"]
+            # FIXME The next line is flagged by mypy for Port not having an attribute "target".
+            message: str = f"Port {self.port} ({self.id}) created."  # type: ignore
+        elif response.status_code == 400:
+            message = f"Error: {response.json()['msg']}"
+        else:
+            message = f"Error: {response.json()['msg']}"
+
+        return message
 
     @staticmethod
     def get(pid: str) -> Port:

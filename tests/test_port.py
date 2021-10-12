@@ -50,6 +50,24 @@ class TestPort:
         with pytest.raises(SchemaError, match=error_message):
             Port(**port_dict)
 
+    @pytest.mark.skip(reason="API returns 500 error not 200.")
+    @vcr.use_cassette("tests/vcr_cassettes/port-create-200.yml")
+    def test_create_200(self, port_dict):
+        """Test an API call to create a Port Object."""
+        # Delete id as the API will not accept when creating.
+        del port_dict["id"]
+
+        port = Port(**port_dict)
+
+        message = port.create()
+
+        # Add port ID back to port_dict
+        port_dict["id"] = port.id
+
+        assert isinstance(port, Port)
+        assert port.to_dict() == port_dict
+        assert message == "Host 22 (No3e25l6) created."
+
     @vcr.use_cassette("tests/vcr_cassettes/port-get-200.yml")
     def test_get_200(self, port_dict):
         """Test an API call to get a port."""
