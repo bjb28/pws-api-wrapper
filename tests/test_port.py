@@ -50,7 +50,6 @@ class TestPort:
         with pytest.raises(SchemaError, match=error_message):
             Port(**port_dict)
 
-    @pytest.mark.skip(reason="API returns 500 error not 200.")
     @vcr.use_cassette("tests/vcr_cassettes/port-create-200.yml")
     def test_create_200(self, port_dict):
         """Test an API call to create a Port Object."""
@@ -66,7 +65,21 @@ class TestPort:
 
         assert isinstance(port, Port)
         assert port.to_dict() == port_dict
-        assert message == "Host 22 (No3e25l6) created."
+        assert message == "Port 22 (za4AlEP6) created."
+
+    @vcr.use_cassette("tests/vcr_cassettes/port-create-400.yml")
+    def test_create_400(self, port_dict):
+        """Test a failing API call to create a Port Object."""
+        # Delete id as the API will not accept when creating.
+        del port_dict["id"]
+        # Delete change to a fake hid to cause 400 error.
+        port_dict["hid"] = "abdc1234"
+
+        port = Port(**port_dict)
+
+        message = port.create()
+
+        assert message == "Error: Invalid Host ID"
 
     @vcr.use_cassette("tests/vcr_cassettes/port-get-200.yml")
     def test_get_200(self, port_dict):
