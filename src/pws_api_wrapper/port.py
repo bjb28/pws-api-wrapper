@@ -139,6 +139,20 @@ class Port(AbstractEndpoint):
 
         return message
 
+    def delete(self) -> str:
+        """Delete a port by id from pentest.ws API."""
+        response: Response = self.pws_session.delete(f"{self.port_path}")
+
+        # TODO Custom Exception (Issue 1)
+        if response.status_code == 200:
+            # FIXME The next line is flagged by mypy for Host not having an attribute "target".
+            message: str = f"Port {self.port} ({self.id}) deleted."  # type: ignore
+        elif response.status_code == 404:
+            # FIXME The next line is flagged by mypy for Host not having an attribute "target".
+            message = f"Error: Port {self.port} ({self.id}) not found"  # type: ignore
+
+        return message
+
     @staticmethod
     def get(pid: str) -> Port:
         """Get a port from the API.."""

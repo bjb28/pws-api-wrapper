@@ -81,6 +81,25 @@ class TestPort:
 
         assert message == "Error: Invalid Host ID"
 
+    @vcr.use_cassette("tests/vcr_cassettes/port-del-200.yml")
+    def test_port_delete_200(self, port_dict):
+        """Test an API call to delete a Port."""
+        port = Port(**port_dict)
+
+        message = port.delete()
+
+        assert message == "Port 22 (Da0OZnPo) deleted."
+
+    @vcr.use_cassette("tests/vcr_cassettes/port-del-404.yml")
+    def test_port_delete_400(self, port_dict):
+        """Test an API call to delete an Port that fails."""
+        port = Port(**port_dict)
+        port.id = "abdc1234"
+
+        message = port.delete()
+
+        assert message == "Error: Port 22 (abdc1234) not found"
+
     @vcr.use_cassette("tests/vcr_cassettes/port-get-200.yml")
     def test_get_200(self, port_dict):
         """Test an API call to get a port."""
