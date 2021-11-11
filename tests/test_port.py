@@ -88,7 +88,7 @@ class TestPort:
 
         message = port.delete()
 
-        assert message == "Port 22 (Da0OZnPo) deleted."
+        assert message == "Port 22 (56VqkKba) deleted."
 
     @vcr.use_cassette("tests/vcr_cassettes/port-del-404.yml")
     def test_port_delete_400(self, port_dict):
@@ -103,7 +103,7 @@ class TestPort:
     @vcr.use_cassette("tests/vcr_cassettes/port-get-200.yml")
     def test_get_200(self, port_dict):
         """Test an API call to get a port."""
-        port = Port.get("Da0OZnPo")
+        port = Port.get("56VqkKba")
 
         assert isinstance(port, Port)
         assert port.to_dict() == port_dict

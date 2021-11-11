@@ -9,10 +9,10 @@ interactions:
       accept:
       - application/json
     method: GET
-    uri: https://pentest.ws/api/v1/ports/Da0OZnPo
+    uri: https://pentest.ws/api/v1/ports/56VqkKba
   response:
     body:
-      string: '{"id":"Da0OZnPo","hid":"za4AlEP6","port":22,"proto":"tcp","service":"SSH","version":"2.3","status":"Needs
+      string: '{"id":"56VqkKba","hid":"za4AlEP6","port":22,"proto":"tcp","service":"SSH","version":"2.3","status":"Needs
         Review","state":"open","notes":"Some Notes","checklist":[{"0":"Log In?"}]}'
     headers:
       CF-Cache-Status:

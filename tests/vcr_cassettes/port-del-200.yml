@@ -11,7 +11,7 @@ interactions:
       accept:
       - application/json
     method: DELETE
-    uri: https://pentest.ws/api/v1/ports/Da0OZnPo
+    uri: https://pentest.ws/api/v1/ports/56VqkKba
   response:
     body:
       string: OK
