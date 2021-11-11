@@ -36,7 +36,11 @@ class AbstractEndpoint(object):
                 and not attribute.endswith("path")
             ):
                 dictionary[attribute] = getattr(self, attribute)
-            elif isinstance(getattr(self, attribute), bool):
+            elif (
+                isinstance(getattr(self, attribute), bool)
+                or isinstance(getattr(self, attribute), int)
+                or isinstance(getattr(self, attribute), list)
+            ):
                 dictionary[attribute] = getattr(self, attribute)
 
         return dictionary

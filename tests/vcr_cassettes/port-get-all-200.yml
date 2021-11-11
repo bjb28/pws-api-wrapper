@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: GET
+    uri: https://pentest.ws/api/v1/hosts/No3e25l6/ports
+  response:
+    body:
+      string: '[{"id":"56VqkKba","hid":"No3e25l6","port":22,"proto":"udp","service":"SSH","version":null,"status":"Needs
+        Review","state":"open","notes":"Some Notes","checklist":[{"0":"Log In?"}]},{"id":"56VqJ43a","hid":"No3e25l6","port":80,"proto":"tcp","service":"http","version":"1.1","status":"Vulnerable","state":"filtered","notes":"Oh
+        Ya","checklist":[{"0":"HTTP?"}]},{"id":"56vL55eo","hid":"No3e25l6","port":123,"proto":"tcp","service":null,"version":null,"status":"Checked","state":"closed","notes":null,"checklist":null},{"id":"MxNMPPJ6","hid":"No3e25l6","port":124,"proto":null,"service":null,"version":null,"status":"Vulnerable","state":"unfiltered","notes":null,"checklist":null},{"id":"Q68YyQBx","hid":"No3e25l6","port":125,"proto":"tcp","service":null,"version":null,"status":"Owned","state":"open|filtered","notes":null,"checklist":null},{"id":"Z6GJy85a","hid":"No3e25l6","port":126,"proto":"tcp","service":null,"version":null,"status":null,"state":"closed|filtered","notes":null,"checklist":null}]'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 69af97f9ff0332ee-EWR
+      Cache-Control:
+      - no-store
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '997'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 08 Oct 2021 13:07:41 GMT
+      Etag:
+      - W/"3e5-y++EFvOAk8mX3KvKhD6ofUasG44"
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=xZulE1xhXK7KR6cBiOSosuL%2BGA5iB5bz%2Fx32JSLiBQiCDyNlzw6lfuU6Tazr7rPzaS8U%2FtrR0gjMd7rgkWbQVrvNL43qhTNd4OqKD6BAGtImHdzR4dTUaObqK24%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

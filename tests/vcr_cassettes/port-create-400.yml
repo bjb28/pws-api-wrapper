@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: '{"port": 22, "proto": "tcp", "service": "SSH", "version": "2.3", "status":
+      "Needs Review", "state": "open", "notes": "Some Notes", "checklist": [{"0":
+      "Log In?"}]}'
+    headers:
+      Content-Length:
+      - '163'
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: POST
+    uri: https://pentest.ws/api/v1/hosts/abdc1234/ports
+  response:
+    body:
+      string: '{"msg":"Invalid Host ID"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 69f2eb66a84132e4-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '25'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 16 Oct 2021 17:13:44 GMT
+      Etag:
+      - W/"19-z14mU5ZUPBl+gSN5ad+L+vp20Gs"
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=kA%2FWD3Yc2DUnkwQt0mY7PndvDTdA35NA7ouqoMThA9i1vYLL6FH8JDIwI%2FMqEUTnZF7wKIOjnWb%2FhQyoLDImaS6WlPuLslLNZVSviqLSl%2FrjGFtzxrqrsgn5gyc%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 400
+      message: Bad Request
+version: 1

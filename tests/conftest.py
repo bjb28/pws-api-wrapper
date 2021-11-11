@@ -106,3 +106,20 @@ def host_dict():
         "thumbs_up": True,
         "type": "Unknown",
     }
+
+
+@pytest.fixture
+def port_dict():
+    """Return a Port dictionary."""
+    return {
+        "id": "56VqkKba",
+        "hid": "za4AlEP6",
+        "port": 22,
+        "proto": "tcp",
+        "service": "SSH",
+        "version": "2.3",
+        "status": "Needs Review",
+        "state": "open",
+        "notes": "Some Notes",
+        "checklist": [{"0": "Log In?"}],
+    }
