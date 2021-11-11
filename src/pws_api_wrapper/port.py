@@ -145,10 +145,10 @@ class Port(AbstractEndpoint):
 
         # TODO Custom Exception (Issue 1)
         if response.status_code == 200:
-            # FIXME The next line is flagged by mypy for Host not having an attribute "target".
+            # FIXME The next line is flagged by mypy for Port not having an attribute "port".
             message: str = f"Port {self.port} ({self.id}) deleted."  # type: ignore
         elif response.status_code == 404:
-            # FIXME The next line is flagged by mypy for Host not having an attribute "target".
+            # FIXME The next line is flagged by mypy for Port not having an attribute "port".
             message = f"Error: Port {self.port} ({self.id}) not found"  # type: ignore
 
         return message
@@ -180,3 +180,30 @@ class Port(AbstractEndpoint):
             ports.append(Port(**host_response))
 
         return ports
+
+    def update(self) -> str:
+        """Update a Port."""
+        self.pws_session.headers["Content-Type"] = "application/json"
+
+        data = self.to_dict()
+        # TODO Make these field meta data.
+        del data["id"]
+        del data["hid"]
+
+        del data["port"]
+
+        # TODO Custom Exception (Issue 1)
+        response: Response = self.pws_session.put(
+            f"{self.port_path}",
+            headers=self.pws_session.headers,
+            data=json.dumps(data),
+        )
+
+        # TODO Custom Exception (Issue 1)
+        if response.status_code == 200:
+            # FIXME The next line is flagged by mypy for Port not having an attribute "port".
+            message: str = f"Port {self.port} ({self.id}) updated."  # type: ignore
+        elif response.status_code == 400:
+            message = f"Error: {response.json()['msg']}"
+
+        return message

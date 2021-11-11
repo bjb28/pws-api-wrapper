@@ -120,3 +120,26 @@ class TestPort:
         ports = Port.get_all(host_dict["id"])
 
         assert len(ports) == 6
+
+    @vcr.use_cassette("tests/vcr_cassettes/port-update-200.yml")
+    def test_update_200(self, port_dict):
+        """Test an API call to put an update to a Port."""
+        port_dict["service"] = "New SSH"
+
+        port = Port(**port_dict)
+
+        message = port.update()
+
+        assert isinstance(port, Port)
+        assert port.to_dict() == port_dict
+        assert message == "Port 22 (56VqkKba) updated."
+
+    @vcr.use_cassette("tests/vcr_cassettes/port-update-400.yml")
+    def test_host_update_400(self, port_dict):
+        """Test an API call to create an Port with incorrect hid."""
+        port = Port(**port_dict)
+
+        message = port.update()
+
+        assert isinstance(port, Port)
+        assert message == "Error: Invalid Field: port"

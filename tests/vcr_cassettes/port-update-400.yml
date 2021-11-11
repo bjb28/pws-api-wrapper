@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: '{"port": 22, "proto": "tcp", "service": "SSH", "version": "2.3", "status":
+      "Needs Review", "state": "open", "notes": "Some Notes", "checklist": [{"0":
+      "Log In?"}]}'
+    headers:
+      Content-Length:
+      - '163'
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: PUT
+    uri: https://pentest.ws/api/v1/ports/56VqkKba
+  response:
+    body:
+      string: '{"msg":"Invalid Field: port"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 6ac427405ac9e704-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '29'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 11 Nov 2021 02:40:00 GMT
+      Etag:
+      - W/"1d-5KBPbxV4g0Mtr2MgvAnE3QwTU44"
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=NshGDKRia3MvgQZZD9D5nIOZldssg6mxVr7fg8T6H7DXEAUxvZcjOMG4wVjiV3TFFw%2F%2FUnA4WGD4fefnJgl1EYRXDLG43tpBA7LtHyrvfMI1p9M4XPAVnXbj8mk%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 400
+      message: Bad Request
+version: 1
