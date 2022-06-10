@@ -8,6 +8,8 @@ import sys
 from typing import Any
 
 # Third-Party Libraries
+from requests import exceptions as requests_exceptions
+from requests.models import Response
 from schema import And, Optional, Or, Regex, Schema, SchemaError
 
 # Customer Libraries
@@ -242,3 +244,16 @@ class Scratchpad(AbstractEndpoint):
             self.host_path: str = (
                 f"{AbstractEndpoint.path}/hosts/{self.hid}/scratchpads"
             )
+    @staticmethod
+    def get(id: str) -> Scratchpad:
+        """Get a scratchpad from the API."""
+        # TODO Custom Exception (Issue 1)
+        try:
+            response: Response = Scratchpad.pws_session.get(
+                f"{AbstractEndpoint.path}/scratchpads/{id}"
+            )
+            response.raise_for_status()
+        except requests_exceptions.HTTPError as err:
+            raise SystemExit(err)
+        else:
+            return Scratchpad(**response.json())
