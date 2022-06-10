@@ -198,7 +198,11 @@ class Scratchpad(AbstractEndpoint):
                     Regex(r"^[a-zA-Z0-9]{8,}$", flags=re.IGNORECASE),
                     error='"id" should be 8 alphanumeric characters',
                 ),
-                "title": And(str, error='Scratchad "title" is required.'),
+                "title": And(
+                    str,
+                    Regex(r"[a-zA-Z0-9]+", flags=re.IGNORECASE),
+                    error='Scratchpad "title" is required.',
+                ),
                 Optional("type"): Or(
                     And(str, lambda submitted_type: submitted_type in TYPES),
                     And(None),
