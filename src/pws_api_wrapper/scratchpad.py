@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 # Standard Python Libraries
+import json
 import re
 import sys
 from typing import Any
@@ -244,6 +245,29 @@ class Scratchpad(AbstractEndpoint):
             self.host_path: str = (
                 f"{AbstractEndpoint.path}/hosts/{self.hid}/scratchpads"
             )
+
+    def create(self) -> str:
+        """Create an Scratchpad in pentest.ws."""
+        self.pws_session.headers["Content-Type"] = "application/json"
+
+        scratchpad_dict: dict = self.to_dict()
+
+        scratchpad_data: str = json.dumps(scratchpad_dict)
+
+        # TODO Custom Exception (Issue 1)
+        response: Response = self.pws_session.post(
+            self.host_path, headers=self.pws_session.headers, data=scratchpad_data
+        )
+
+        # TODO Custom Exception (Issue 1)
+        if response.status_code == 200:
+            self.id = response.json()["id"]
+            message: str = f"Scratchpad {self.title} ({self.id}) created."
+        elif response.status_code == 400:
+            message = f"Error: {response.json()['msg']}"
+
+        return message
+
     @staticmethod
     def get(id: str) -> Scratchpad:
         """Get a scratchpad from the API."""
