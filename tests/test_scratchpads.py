@@ -13,6 +13,20 @@ from pws_api_wrapper import Scratchpad
 class TestScratchpad:
     """Tests for the Scratchpad."""
 
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-get-200.yml")
+    def test_get_200(self, scratchpad_dict):
+        """Test an API call to get a scratchpad."""
+        scratchpad = Scratchpad.get("1abWR16y")
+
+        assert isinstance(scratchpad, Scratchpad)
+        assert scratchpad.to_dict() == scratchpad_dict
+
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-get-400.yml")
+    def test_get_400(self):
+        """Test an API call to get a scratchpad that returns an error."""
+        with pytest.raises(SystemExit):
+            Scratchpad.get("abcd1234")
+
     def test_init_validation_pass(self, scratchpad_dict):
         """Test the init validation."""
 
