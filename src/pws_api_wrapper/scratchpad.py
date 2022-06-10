@@ -16,7 +16,6 @@ from schema import And, Optional, Or, Regex, Schema, SchemaError
 # Customer Libraries
 from .abstract_endpoint import AbstractEndpoint
 
-
 LANGUAGES = [
     "abap",
     "abc",
@@ -262,7 +261,8 @@ class Scratchpad(AbstractEndpoint):
         # TODO Custom Exception (Issue 1)
         if response.status_code == 200:
             self.id = response.json()["id"]
-            message: str = f"Scratchpad {self.title} ({self.id}) created."
+            # FIXME The next line is flagged by mypy for Host not having an attribute "target".
+            message: str = f"Scratchpad {self.title} ({self.id}) created."  # type: ignore
         elif response.status_code == 400:
             message = f"Error: {response.json()['msg']}"
 

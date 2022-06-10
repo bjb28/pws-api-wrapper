@@ -16,7 +16,6 @@ class TestScratchpad:
     @vcr.use_cassette("tests/vcr_cassettes/scratchpad-create-200.yml")
     def test_create_200(self, scratchpad_dict):
         """Test an API call to create an Scratchpad."""
-
         scratchpad = Scratchpad(**scratchpad_dict)
 
         message = scratchpad.create()
@@ -31,7 +30,6 @@ class TestScratchpad:
     @vcr.use_cassette("tests/vcr_cassettes/scratchpad-create-400.yml")
     def test_create_400(self, scratchpad_dict):
         """Test an API call to create an Scratchpad with an type."""
-
         # Add fake host id to cause error.
         scratchpad_dict["hid"] = "12345678"
 
@@ -58,7 +56,6 @@ class TestScratchpad:
 
     def test_init_validation_pass(self, scratchpad_dict):
         """Test the init validation."""
-
         scratchpad = Scratchpad(**scratchpad_dict)
 
         assert scratchpad.to_dict() == scratchpad_dict
