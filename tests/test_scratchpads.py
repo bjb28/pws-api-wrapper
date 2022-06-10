@@ -13,6 +13,35 @@ from pws_api_wrapper import Scratchpad
 class TestScratchpad:
     """Tests for the Scratchpad."""
 
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-create-200.yml")
+    def test_create_200(self, scratchpad_dict):
+        """Test an API call to create an Scratchpad."""
+
+        scratchpad = Scratchpad(**scratchpad_dict)
+
+        message = scratchpad.create()
+
+        # Add host ID back to host_dict
+        scratchpad_dict["id"] = scratchpad.id
+
+        assert isinstance(scratchpad, Scratchpad)
+        assert scratchpad.to_dict() == scratchpad_dict
+        assert message == "Scratchpad README.md (1abWR16y) created."
+
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-create-400.yml")
+    def test_create_400(self, scratchpad_dict):
+        """Test an API call to create an Scratchpad with an type."""
+
+        # Add fake host id to cause error.
+        scratchpad_dict["hid"] = "12345678"
+
+        scratchpad = Scratchpad(**scratchpad_dict)
+
+        message = scratchpad.create()
+
+        assert isinstance(scratchpad, Scratchpad)
+        assert message == "Error: Invalid Host ID"
+
     @vcr.use_cassette("tests/vcr_cassettes/scratchpad-get-200.yml")
     def test_get_200(self, scratchpad_dict):
         """Test an API call to get a scratchpad."""

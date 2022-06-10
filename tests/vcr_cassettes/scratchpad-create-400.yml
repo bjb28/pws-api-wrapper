@@ -1,0 +1,59 @@
+interactions:
+- request:
+    body: '{"id": "1abWR16y", "hid": "12345678", "title": "README.md", "type": "code",
+      "language": "markdown", "content": "`hash:user``"}'
+    headers:
+      Content-Length:
+      - '126'
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: POST
+    uri: https://pentest.ws/api/v1/hosts/12345678/scratchpads
+  response:
+    body:
+      string: '{"msg":"Invalid Host ID"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 71943cbb3ff418ee-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '25'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 10 Jun 2022 18:40:45 GMT
+      Etag:
+      - W/"19-z14mU5ZUPBl+gSN5ad+L+vp20Gs"
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=og41bdQOGneRWhkhqDVfGWR3dxDo1jfUzd8Yd1X%2BsHegWaGfAAwHsBh1eqTg85jjrPKCVNU4C2xoTughfURMwSWNei5e8DmvjnxSYSbcICZ6yE4ozz%2ByQLjQ2LY%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 400
+      message: Bad Request
+version: 1
