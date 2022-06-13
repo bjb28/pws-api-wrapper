@@ -54,6 +54,13 @@ class TestScratchpad:
         with pytest.raises(SystemExit):
             Scratchpad.get("abcd1234")
 
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-get-all-200.yml")
+    def test_get_call(self):
+        """Test an API call to get all scratchpads for a Host."""
+        scratchpads = Scratchpad.get_all("za4AlEP6")
+
+        assert len(scratchpads) == 3
+
     def test_init_validation_pass(self, scratchpad_dict):
         """Test the init validation."""
         scratchpad = Scratchpad(**scratchpad_dict)
