@@ -16,6 +16,9 @@ class TestScratchpad:
     @vcr.use_cassette("tests/vcr_cassettes/scratchpad-create-200.yml")
     def test_create_200(self, scratchpad_dict):
         """Test an API call to create an Scratchpad."""
+        # Delete id as the API will not accept when creating.
+        del scratchpad_dict["id"]
+
         scratchpad = Scratchpad(**scratchpad_dict)
 
         message = scratchpad.create()
@@ -39,6 +42,25 @@ class TestScratchpad:
 
         assert isinstance(scratchpad, Scratchpad)
         assert message == "Error: Invalid Host ID"
+
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-del-200.yml")
+    def test_scratchpad_delete_200(self, scratchpad_dict):
+        """Test an API call to delete a Scratchpad."""
+        scratchpad = Scratchpad(**scratchpad_dict)
+
+        message = scratchpad.delete()
+
+        assert message == "Scratchpad README.md (1abWR16y) deleted."
+
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-del-400.yml")
+    def test_host_delete_400(self, scratchpad_dict):
+        """Test an API call to delete an Host that fails."""
+        scratchpad = Scratchpad(**scratchpad_dict)
+        scratchpad.id = "abdc1234"
+
+        message = scratchpad.delete()
+
+        assert message == "Error: Scratchpad README.md (abdc1234) not found"
 
     @vcr.use_cassette("tests/vcr_cassettes/scratchpad-get-200.yml")
     def test_get_200(self, scratchpad_dict):
