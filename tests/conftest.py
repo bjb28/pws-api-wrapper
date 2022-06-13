@@ -123,3 +123,16 @@ def port_dict():
         "notes": "Some Notes",
         "checklist": [{"0": "Log In?"}],
     }
+
+
+@pytest.fixture
+def scratchpad_dict():
+    """Return a Scratchpad dictionary."""
+    return {
+        "id": "1abWR16y",
+        "hid": "za4AlEP6",
+        "title": "README.md",
+        "type": "code",
+        "language": "markdown",
+        "content": "`hash:user``",
+    }

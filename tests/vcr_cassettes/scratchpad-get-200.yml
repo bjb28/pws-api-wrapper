@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: GET
+    uri: https://pentest.ws/api/v1/scratchpads/1abWR16y
+  response:
+    body:
+      string: '{"id":"1abWR16y","hid":"za4AlEP6","title":"README.md","type":"code","language":"markdown","content":"`hash:user``"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7193490bfeb63320-EWR
+      Cache-Control:
+      - no-store
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '115'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 10 Jun 2022 15:54:24 GMT
+      Etag:
+      - W/"73-z9NYd088XkHF8PrEwkhzp6GSpjM"
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=FQxWEnSrV0kmFmvXDBcb03aHVuqJ9gt5qw%2FrhDwftUDTYQ%2FkwJogF%2BnpFjPsOjMNscP7cy7ZMbovJzKJ7IqXrYKHqgVnujR1isEXq2ggX9fd%2BlLDtZL%2Bmtlekjk%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
