@@ -309,3 +309,29 @@ class Scratchpad(AbstractEndpoint):
             scratchpads.append(Scratchpad(**scratchpad_response))
 
         return scratchpads
+
+    def update(self) -> str:
+        """Update a Scratchpad."""
+        self.pws_session.headers["Content-Type"] = "application/json"
+
+        data = self.to_dict()
+        # TODO Make these field meta data.
+        del data["id"]
+        del data["hid"]
+
+        # TODO Custom Exception (Issue 1)
+        response: Response = self.pws_session.put(
+            f"{self.scratchpad_path}",
+            headers=self.pws_session.headers,
+            data=json.dumps(data),
+        )
+
+        # TODO Custom Exception (Issue 1)
+        if response.status_code == 200:
+            # FIXME Flagged by mypy for not having an attribute "title".
+            message: str = f"Scratchpad {self.title} ({self.id}) updated."  # type: ignore
+        elif response.status_code == 400:
+
+            message = f"Error: {response.reason}"
+
+        return message
