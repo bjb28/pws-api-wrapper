@@ -268,6 +268,20 @@ class Scratchpad(AbstractEndpoint):
 
         return message
 
+    def delete(self) -> str:
+        """Delete a scratchpad by id from pentest.ws API."""
+        response: Response = self.pws_session.delete(f"{self.scratchpad_path}")
+
+        # TODO Custom Exception (Issue 1)
+        if response.status_code == 200:
+            # FIXME The next line is flagged by mypy for Host not having an attribute "title".
+            message: str = f"Scratchpad {self.title} ({self.id}) deleted."  # type: ignore
+        elif response.status_code == 404:
+            # FIXME The next line is flagged by mypy for Host not having an attribute "title".
+            message = f"Error: Scratchpad {self.title} ({self.id}) not found"  # type: ignore
+
+        return message
+
     @staticmethod
     def get(id: str) -> Scratchpad:
         """Get a scratchpad from the API."""
