@@ -281,3 +281,17 @@ class Scratchpad(AbstractEndpoint):
             raise SystemExit(err)
         else:
             return Scratchpad(**response.json())
+
+    @staticmethod
+    def get_all(hid: str) -> list[Scratchpad]:
+        """Get all scratchpads from a Host."""
+        # TODO Custom Exception (Issue 1)
+        response: Response = Scratchpad.pws_session.get(
+            f"{AbstractEndpoint.path}/hosts/{hid}/scratchpads"
+        )
+        scratchpads: list[Scratchpad] = list()
+
+        for scratchpad_response in response.json():
+            scratchpads.append(Scratchpad(**scratchpad_response))
+
+        return scratchpads
