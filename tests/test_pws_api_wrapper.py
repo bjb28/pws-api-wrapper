@@ -54,7 +54,7 @@ class TestAbstractEndpoint:
 class TestEngagement:
     """Tests for the Engagement Endpoint."""
 
-    @vcr.use_cassette("tests/vcr_cassettes/engagement-create-200.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/engagement/create-200.yml")
     def test_engagement_create_200(self, engagement_dict_no_archived):
         """Test an API call to create an Engagement."""
         del engagement_dict_no_archived["id"]
@@ -70,7 +70,7 @@ class TestEngagement:
         assert engagement.to_dict() == engagement_dict_no_archived
         assert message == "Engagement Engagement 1 (za4Kz7oy) created."
 
-    @vcr.use_cassette("tests/vcr_cassettes/engagement-create-400.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/engagement/create-400.yml")
     def test_engagement_create_400(self, engagement_dict_no_archived):
         """Test an API call to create an Engagement with missing object."""
         del engagement_dict_no_archived["id"]
@@ -86,7 +86,7 @@ class TestEngagement:
         assert isinstance(engagement, Engagement)
         assert message == "Error: Missing name"
 
-    @vcr.use_cassette("tests/vcr_cassettes/engagement-del-200.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/engagement/del-200.yml")
     def test_engagement_delete_200(self, engagement_object_no_archived):
         """Test an API call to get an Engagement."""
         engagement = engagement_object_no_archived
@@ -95,7 +95,7 @@ class TestEngagement:
 
         assert message == "Engagement Engagement 1 (7aBB7za9) deleted."
 
-    @vcr.use_cassette("tests/vcr_cassettes/engagement-del-400.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/engagement/del-400.yml")
     def test_engagement_delete_400(self, engagement_object_no_archived):
         """Test an API call to get an Engagement."""
         engagement = engagement_object_no_archived
@@ -104,7 +104,7 @@ class TestEngagement:
 
         assert message == "Error: Engagement Engagement 1 (7aBB7za9) not found"
 
-    @vcr.use_cassette("tests/vcr_cassettes/engagement-get.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/engagement/get.yml")
     def test_engagement_get(self, engagement_dict_no_archived):
         """Test an API call to get an Engagement."""
         engagement = Engagement.get("Engagement 1")
@@ -112,7 +112,7 @@ class TestEngagement:
         assert isinstance(engagement, Engagement)
         assert engagement.to_dict() == engagement_dict_no_archived
 
-    @vcr.use_cassette("tests/vcr_cassettes/engagement-get-all.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/engagement/get-all.yml")
     def test_engagement_get_eid(self):
         """Test an API call to get a specific Engagement."""
         eid = Engagement.get_eid("Engagement 1")
@@ -120,7 +120,7 @@ class TestEngagement:
         assert isinstance(eid, str)
         assert eid == "7aBB7za9", "The eid should be 7aBB7za9."
 
-    @vcr.use_cassette("tests/vcr_cassettes/engagement-get-all.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/engagement/get-all.yml")
     def test_engagement_get_all(self):
         """Test an API call to get all Engagement."""
         engagements = Engagement.get_all()
@@ -150,7 +150,7 @@ class TestEngagement:
             engagement_object_no_created_at.to_dict() == engagement_dict_no_created_at
         )
 
-    @vcr.use_cassette("tests/vcr_cassettes/engagement-update-200.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/engagement/update-200.yml")
     def test_engagement_update_200(self, engagement_dict_no_archived):
         """Test an API call to update an Engagement."""
         engagement = Engagement(**engagement_dict_no_archived)
@@ -162,7 +162,7 @@ class TestEngagement:
         assert isinstance(engagement, Engagement)
         assert message == "Engagement Engagement 1 (7aBB7za9) updated."
 
-    @vcr.use_cassette("tests/vcr_cassettes/engagement-update-400.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/engagement/update-400.yml")
     def test_engagement_update_400(self, engagement_dict_no_archived):
         """Test an API call to create an Engagement with missing object."""
         engagement = Engagement(**engagement_dict_no_archived)

@@ -13,7 +13,7 @@ from pws_api_wrapper import Scratchpad
 class TestScratchpad:
     """Tests for the Scratchpad."""
 
-    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-create-200.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad/create-200.yml")
     def test_create_200(self, scratchpad_dict):
         """Test an API call to create an Scratchpad."""
         # Delete id as the API will not accept when creating.
@@ -30,7 +30,7 @@ class TestScratchpad:
         assert scratchpad.to_dict() == scratchpad_dict
         assert message == "Scratchpad README.md (1abWR16y) created."
 
-    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-create-400.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad/create-400.yml")
     def test_create_400(self, scratchpad_dict):
         """Test an API call to create an Scratchpad with an type."""
         # Add fake host id to cause error.
@@ -43,7 +43,7 @@ class TestScratchpad:
         assert isinstance(scratchpad, Scratchpad)
         assert message == "Error: Invalid Host ID"
 
-    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-del-200.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad/del-200.yml")
     def test_scratchpad_delete_200(self, scratchpad_dict):
         """Test an API call to delete a Scratchpad."""
         scratchpad = Scratchpad(**scratchpad_dict)
@@ -52,7 +52,7 @@ class TestScratchpad:
 
         assert message == "Scratchpad README.md (1abWR16y) deleted."
 
-    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-del-400.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad/del-400.yml")
     def test_host_delete_400(self, scratchpad_dict):
         """Test an API call to delete an Host that fails."""
         scratchpad = Scratchpad(**scratchpad_dict)
@@ -62,7 +62,7 @@ class TestScratchpad:
 
         assert message == "Error: Scratchpad README.md (abdc1234) not found"
 
-    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-get-200.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad/get-200.yml")
     def test_get_200(self, scratchpad_dict):
         """Test an API call to get a scratchpad."""
         scratchpad = Scratchpad.get("1abWR16y")
@@ -70,13 +70,13 @@ class TestScratchpad:
         assert isinstance(scratchpad, Scratchpad)
         assert scratchpad.to_dict() == scratchpad_dict
 
-    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-get-400.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad/get-400.yml")
     def test_get_400(self):
         """Test an API call to get a scratchpad that returns an error."""
         with pytest.raises(SystemExit):
             Scratchpad.get("abcd1234")
 
-    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-get-all-200.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad/get-all-200.yml")
     def test_get_call(self):
         """Test an API call to get all scratchpads for a Host."""
         scratchpads = Scratchpad.get_all("za4AlEP6")
@@ -116,7 +116,7 @@ class TestScratchpad:
         with pytest.raises(SchemaError, match=error_message):
             Scratchpad(**scratchpad_dict)
 
-    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-update-200.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad/update-200.yml")
     def test_update_200(self, scratchpad_dict):
         """Test an API call to put an update to a Scratchpad."""
         scratchpad_dict["content"] = "New Content"
@@ -129,7 +129,7 @@ class TestScratchpad:
         assert scratchpad.to_dict() == scratchpad_dict
         assert message == "Scratchpad README.md (1abWR16y) updated."
 
-    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-update-400.yml")
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad/update-400.yml")
     def test_host_update_400(self, scratchpad_dict):
         """Test an API call to create an Scratchpad with missing object."""
         scratchpad = Scratchpad(**scratchpad_dict)
