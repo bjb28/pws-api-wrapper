@@ -115,3 +115,27 @@ class TestScratchpad:
         scratchpad_dict[attribute] = value
         with pytest.raises(SchemaError, match=error_message):
             Scratchpad(**scratchpad_dict)
+
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-update-200.yml")
+    def test_update_200(self, scratchpad_dict):
+        """Test an API call to put an update to a Scratchpad."""
+        scratchpad_dict["content"] = "New Content"
+
+        scratchpad = Scratchpad(**scratchpad_dict)
+
+        message = scratchpad.update()
+
+        assert isinstance(scratchpad, Scratchpad)
+        assert scratchpad.to_dict() == scratchpad_dict
+        assert message == "Scratchpad README.md (1abWR16y) updated."
+
+    @vcr.use_cassette("tests/vcr_cassettes/scratchpad-update-400.yml")
+    def test_host_update_400(self, scratchpad_dict):
+        """Test an API call to create an Scratchpad with missing object."""
+        scratchpad = Scratchpad(**scratchpad_dict)
+        scratchpad.id = "abdc1234"
+
+        message = scratchpad.update()
+
+        assert isinstance(scratchpad, Scratchpad)
+        assert message == "Error: Bad Request"
