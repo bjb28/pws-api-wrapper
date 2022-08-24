@@ -11,6 +11,8 @@ This is an early version of a Python API wrapper for
 abilities by making it simple to build Python scripts to interact
 with data within the site.
 
+Pentest.ws API documentation can be found [here](https://pentest.ws/docs/api/v1/)
+
 ## Contributing ##
 
 We welcome contributions!  Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for
