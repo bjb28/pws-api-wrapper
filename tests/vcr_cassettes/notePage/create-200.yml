@@ -1,0 +1,57 @@
+interactions:
+- request:
+    body: '{"object_id": "za4AlEP6", "object_type": "e", "title": "Engagement Test",
+      "content": "Some text is here."}'
+    headers:
+      Content-Length:
+      - '106'
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: POST
+    uri: https://pentest.ws/api/v1/e/za4AlEP6/notepages
+  response:
+    body:
+      string: '{"id":"96ZKAyx2"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 755aade4e80e1a03-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 06 Oct 2022 01:38:44 GMT
+      Etag:
+      - W/"11-zJPJWrUoU5qlTzAL4iBhvslp9a4"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=BVSCUn4zu50LKPeb0AzzaXGVi65Mn0mOG6vkl4opu9fgJQqZlY49Pv4FW2T2EfyIpEZaAxr69jvmKVCkk2B9v5poVNxs94Y5%2BcnVj5c6k%2Bq1fkjpd4%2Bzp%2FvNHoE%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
