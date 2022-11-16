@@ -80,9 +80,7 @@ class NotePage(AbstractEndpoint):
 
         try:
             # If a notePad ID, oid, and otype is provided, creates the notePad_path.
-            self.notepad_path: str = (
-                f"{AbstractEndpoint.path}/{self.otype}/{self.oid}/notepages/{self.id}"
-            )
+            self.notepad_path: str = f"{AbstractEndpoint.path}/notepages/{self.id}"
         except AttributeError:
             pass
 
@@ -128,3 +126,29 @@ class NotePage(AbstractEndpoint):
             raise SystemExit(err)
         else:
             return NotePage(**response.json())
+
+    def update(self) -> str:
+        """Update a Note Page"""
+        self.pws_session.headers["Content-Type"] = "application/json"
+
+        data = self.to_dict()
+        # TODO Make these field meta data.
+        del data["id"]
+        del data["oid"]
+        del data["otype"]
+
+        # TODO Custom Exception (Issue 1)
+        response: Response = self.pws_session.put(
+            f"{self.notepad_path}",
+            headers=self.pws_session.headers,
+            data=json.dumps(data),
+        )
+
+        # TODO Custom Exception (Issue 1)
+        if response.status_code == 200:
+            # FIXME Flagged by mypy for not having an attribute "title".
+            message: str = f"Note Page {self.title} ({self.id}) updated."  # type: ignore
+        elif response.status_code == 404:
+            message = f"Error: {response.reason}"
+
+        return message
