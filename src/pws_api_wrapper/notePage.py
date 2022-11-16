@@ -142,7 +142,7 @@ class NotePage(AbstractEndpoint):
             return NotePage(**response.json())
 
     def update(self) -> str:
-        """Update a Note Page"""
+        """Update a Note Page."""
         self.pws_session.headers["Content-Type"] = "application/json"
 
         data = self.to_dict()
