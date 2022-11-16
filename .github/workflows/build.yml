@@ -22,28 +22,24 @@ jobs:
         uses: cisagov/setup-env-github-action@develop
       - uses: actions/checkout@v3
       - id: setup-python
-        uses: actions/setup-python@v4.3.0
+        uses: actions/setup-python@v4
         with:
           python-version: "3.10"
       # We need the Go version and Go cache location for the actions/cache step,
       # so the Go installation must happen before that.
-      - uses: actions/setup-go@v3
+      - id: setup-go
+        uses: actions/setup-go@v3
         with:
-          go-version: "1.16"
-      - name: Store installed Go version
-        id: go-version
-        run: |
-          echo "::set-output name=version::"\
-          "$(go version | sed 's/^go version go\([0-9.]\+\) .*/\1/')"
+          go-version: "1.19"
       - name: Lookup Go cache directory
         id: go-cache
         run: |
-          echo "::set-output name=dir::$(go env GOCACHE)"
+          echo "dir=$(go env GOCACHE)" >> $GITHUB_OUTPUT
       - uses: actions/cache@v3
         env:
           BASE_CACHE_KEY: "${{ github.job }}-${{ runner.os }}-\
             py${{ steps.setup-python.outputs.python-version }}-\
-            go${{ steps.go-version.outputs.version }}-\
+            go${{ steps.setup-go.outputs.go-version }}-\
             packer${{ steps.setup-env.outputs.packer-version }}-\
             tf${{ steps.setup-env.outputs.terraform-version }}-"
         with:
@@ -58,14 +54,10 @@ jobs:
             ${{ env.PRE_COMMIT_CACHE_DIR }}
             ${{ env.CURL_CACHE_DIR }}
             ${{ steps.go-cache.outputs.dir }}
-          # We do not use '**/setup.py' in the cache key so only the 'setup.py'
-          # file in the root of the repository is used. This is in case a Python
-          # package were to have a 'setup.py' as part of its internal codebase.
           key: "${{ env.BASE_CACHE_KEY }}\
             ${{ hashFiles('**/requirements-test.txt') }}-\
             ${{ hashFiles('**/requirements.txt') }}-\
-            ${{ hashFiles('**/.pre-commit-config.yaml') }}-\
-            ${{ hashFiles('setup.py') }}"
+            ${{ hashFiles('**/.pre-commit-config.yaml') }}"
           restore-keys: |
             ${{ env.BASE_CACHE_KEY }}
       - name: Setup curl cache
@@ -107,6 +99,7 @@ jobs:
       - name: Setup tmate debug session
         uses: mxschmitt/action-tmate@v3
         if: env.RUN_TMATE
+
   test:
     runs-on: ubuntu-latest
     strategy:

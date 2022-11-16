@@ -99,7 +99,7 @@ class Host(AbstractEndpoint):
                         in [os_type[0] for os_type in OS_TYPES],
                         lambda submitted_os_type: submitted_os_type
                         in [os_type[1] for os_type in OS_TYPES],
-                        TYPES,
+                        OS_TYPES,
                     ),  # TODO Create a schema hook.
                     error='Not a valid "os_type".',
                 ),

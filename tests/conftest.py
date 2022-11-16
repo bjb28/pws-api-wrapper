@@ -109,6 +109,18 @@ def host_dict():
 
 
 @pytest.fixture
+def notePage_dict():
+    """Return a Note Page dictionary."""
+    return {
+        "id": "1ab5Mqoy",
+        "oid": "46yEw36g",
+        "otype": "e",
+        "title": "Engagement Test Note",
+        "content": "Some text is here.",
+    }
+
+
+@pytest.fixture
 def port_dict():
     """Return a Port dictionary."""
     return {

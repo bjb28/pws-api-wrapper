@@ -1,0 +1,57 @@
+interactions:
+- request:
+    body: '{"id": "1abWR16y", "object_id": "12345678", "object_type": "e", "title":
+      "Engagement Test", "content": "Some text is here."}'
+    headers:
+      Content-Length:
+      - '124'
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: POST
+    uri: https://pentest.ws/api/v1/e/12345678/notepages
+  response:
+    body:
+      string: '{"msg":"Invalid engagements ID"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 755ac6378b34c44a-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '32'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 06 Oct 2022 01:55:20 GMT
+      Etag:
+      - W/"20-tiQRieoihQB/YZ41nZERj7hwAOU"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=LjkEep57Yt%2BitNDaPFAy%2FgFzIVB5YGB%2Bii3RP3E9%2Fe0icQeBjj4erP7dgHZTffn4RQJgracl3fR0MMJzAodTIHG3roPzDDLfiC6QrHNKqCQf%2FQwco%2FlX2kJnSaQ%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 400
+      message: Bad Request
+version: 1
