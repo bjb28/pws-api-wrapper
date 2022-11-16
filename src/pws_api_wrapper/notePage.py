@@ -22,8 +22,8 @@ class NotePage(AbstractEndpoint):
     Attributes:
             content (str): The content of the Note Page.
             id (str): The Note Page id from pentest.ws.
-            object_type (str): The object type the Note Page is under.
-            object_id (str): The object id that the Note Page falls under.
+            otype (str): The object type the Note Page is under.
+            oid (str): The object id that the Note Page falls under.
             title (str): The Note Page title.
 
     """
@@ -40,22 +40,22 @@ class NotePage(AbstractEndpoint):
                     Regex(r"^[a-zA-Z0-9]{8,}$", flags=re.IGNORECASE),
                     error='"id" should be 8 alphanumeric characters',
                 ),
-                # TODO Make object_id and object_type both required when one is present.
-                Optional("object_id"): And(
+                # TODO Make oid and otype both required when one is present.
+                Optional("oid"): And(
                     str,
                     Regex(r"^[a-zA-Z0-9]{8,}$", flags=re.IGNORECASE),
-                    error='"object_id" should be 8 alphanumeric characters',
+                    error='"oid" should be 8 alphanumeric characters',
                 ),
-                Optional("object_type"): And(
+                Optional("otype"): And(
                     str,
                     Or(
-                        lambda submitted_object_type: submitted_object_type
-                        in [object_type[0] for object_type in OBJECT_TYPES],
+                        lambda submitted_otype: submitted_otype
+                        in [otype[0] for otype in OBJECT_TYPES],
                         lambda submitted_os_type: submitted_os_type
-                        in [object_type[1] for object_type in OBJECT_TYPES],
+                        in [otype[1] for otype in OBJECT_TYPES],
                         OBJECT_TYPES,
                     ),  # TODO Create a schema hook.
-                    error=f'"object_type" should be one of the following: {str(OBJECT_TYPES)[1:-1]}',
+                    error=f'"otype" should be one of the following: {str(OBJECT_TYPES)[1:-1]}',
                 ),
                 "title": And(
                     str,
@@ -76,15 +76,17 @@ class NotePage(AbstractEndpoint):
             setattr(self, key, value)
 
         try:
-            # If a notePad ID, object_id, and object_type is provided, creates the notePad_path.
-            self.notepad_path: str = f"{AbstractEndpoint.path}/{self.object_type}/{self.object_id}/notepages/{self.id}"
+            # If a notePad ID, oid, and otype is provided, creates the notePad_path.
+            self.notepad_path: str = (
+                f"{AbstractEndpoint.path}/{self.otype}/{self.oid}/notepages/{self.id}"
+            )
         except AttributeError:
             pass
 
-        if self.object_id and self.object_type:
-            # Creates and object_path if object_id and object_type are provided.
+        if self.oid and self.otype:
+            # Creates and object_path if oid and otype are provided.
             self.object_path: str = (
-                f"{AbstractEndpoint.path}/{self.object_type}/{self.object_id}/notepages"
+                f"{AbstractEndpoint.path}/{self.otype}/{self.oid}/notepages"
             )
 
     def create(self) -> str:

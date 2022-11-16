@@ -28,13 +28,12 @@ class TestNotePage:
 
         assert isinstance(notePage, NotePage)
         assert notePage.to_dict() == notePage_dict
-        assert message == "Note Page Engagement Test (96ZKAyx2) created."
 
     @vcr.use_cassette("tests/vcr_cassettes/notePage/create-400.yml")
     def test_create_400(self, notePage_dict):
         """Test an API call to fail at creating a Note Page."""
         # Add a fake engagement id to cause an error.
-        notePage_dict["object_id"] = "12345678"
+        notePage_dict["oid"] = "12345678"
 
         notePage = NotePage(**notePage_dict)
 
@@ -55,19 +54,19 @@ class TestNotePage:
             ("id", 4, '"id" should be 8 alphanumeric characters'),
             ("id", "asd123", '"id" should be 8 alphanumeric characters'),
             ("id", "abcd123!", '"id" should be 8 alphanumeric characters'),
-            ("object_id", 4, '"object_id" should be 8 alphanumeric characters'),
-            ("object_id", "asd123", '"object_id" should be 8 alphanumeric characters'),
+            ("oid", 4, '"oid" should be 8 alphanumeric characters'),
+            ("oid", "asd123", '"oid" should be 8 alphanumeric characters'),
             (
-                "object_id",
+                "oid",
                 "abcd123!",
-                '"object_id" should be 8 alphanumeric characters',
+                '"oid" should be 8 alphanumeric characters',
             ),
             ("title", "", 'Note Page "title" is required.'),
             ("content", 1, '"contented" should be a string or None.'),
             (
-                "object_type",
+                "otype",
                 "green",
-                '"object_type" should be one of the following:',
+                '"otype" should be one of the following:',
             ),
         ],
     )

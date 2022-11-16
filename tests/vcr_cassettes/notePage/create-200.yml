@@ -1,10 +1,10 @@
 interactions:
 - request:
-    body: '{"object_id": "za4AlEP6", "object_type": "e", "title": "Engagement Test",
-      "content": "Some text is here."}'
+    body: '{"oid": "46yEw36g", "otype": "e", "title": "Engagement Test
+      Note", "content": "Some text is here."}'
     headers:
       Content-Length:
-      - '106'
+      - '111'
       Content-Type:
       - application/json
       X-API-KEY:
@@ -12,15 +12,15 @@ interactions:
       accept:
       - application/json
     method: POST
-    uri: https://pentest.ws/api/v1/e/za4AlEP6/notepages
+    uri: https://pentest.ws/api/v1/e/46yEw36g/notepages
   response:
     body:
-      string: '{"id":"96ZKAyx2"}'
+      string: '{"id":"1ab5Mqoy"}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 755aade4e80e1a03-EWR
+      - 76b291391cecf019-EWR
       Connection:
       - keep-alive
       Content-Length:
@@ -28,13 +28,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Thu, 06 Oct 2022 01:38:44 GMT
+      - Wed, 16 Nov 2022 19:17:31 GMT
       Etag:
-      - W/"11-zJPJWrUoU5qlTzAL4iBhvslp9a4"
+      - W/"11-RUPElZ/3ulGYyVOy1xmaYcCmRnU"
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=BVSCUn4zu50LKPeb0AzzaXGVi65Mn0mOG6vkl4opu9fgJQqZlY49Pv4FW2T2EfyIpEZaAxr69jvmKVCkk2B9v5poVNxs94Y5%2BcnVj5c6k%2Bq1fkjpd4%2Bzp%2FvNHoE%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=9%2FIbvvilWaF%2BymIHxi5%2BDxqUKW%2FOlLTHbE6wgUS6wpjTNZQZVLjGrj5zGknLESC1A7Qa5GLAiks%2BZFxohHcIvarhxCgD4ZCxU6yBZgZxlF7IJW8SL%2FD1p0YvAoU%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
