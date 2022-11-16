@@ -43,6 +43,26 @@ class TestNotePage:
         assert isinstance(notePage, NotePage)
         assert message == "Error: Invalid engagements ID"
 
+    @vcr.use_cassette("tests/vcr_cassettes/notePage/delete-200.yml")
+    def test_delete_200(self, notePage_dict):
+        """Test an API call to delete a Note Page."""
+        notePage = NotePage(**notePage_dict)
+
+        message = notePage.delete()
+
+        assert message == "Note Page Engagement Test Note (1ab5Mqoy) deleted."
+
+    @vcr.use_cassette("tests/vcr_cassettes/notePage/delete-400.yml")
+    def test_delete_400(self, notePage_dict):
+        """Test an API call to delete a Note Page that is note found."""
+        notePage_dict["id"] = "abcd1234"
+
+        notePage = NotePage(**notePage_dict)
+
+        message = notePage.delete()
+
+        assert message == "Error: Note Page Engagement Test Note (abcd1234) not found."
+
     @vcr.use_cassette("tests/vcr_cassettes/notePage/get-200.yml")
     def test_get_200(self, notePage_dict):
         """Test an API call to getting a Note Page."""
