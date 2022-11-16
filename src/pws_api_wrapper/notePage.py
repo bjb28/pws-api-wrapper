@@ -113,6 +113,20 @@ class NotePage(AbstractEndpoint):
 
         return message
 
+    def delete(self) -> str:
+        """Delete a note page by id from pentest.ws API."""
+        response: Response = self.pws_session.delete(f"{self.notepad_path}")
+
+        # TODO Custom Exception (Issue 1)
+        if response.status_code == 200:
+            # FIXME The next line is flagged by mypy for Host not having an attribute "title".
+            message: str = f"Note Page {self.title} ({self.id}) deleted."  # type: ignore
+        elif response.status_code == 404:
+            # FIXME The next line is flagged by mypy for Host not having an attribute "title".
+            message = f"Error: Note Page {self.title} ({self.id}) not found."  # type: ignore
+
+        return message
+
     @staticmethod
     def get(id: str) -> NotePage:
         """Get a Note Page from the API."""
