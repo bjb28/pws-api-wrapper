@@ -28,6 +28,7 @@ class TestNotePage:
 
         assert isinstance(notePage, NotePage)
         assert notePage.to_dict() == notePage_dict
+        assert message == "Note Page Engagement Test Note (1ab5Mqoy) created."
 
     @vcr.use_cassette("tests/vcr_cassettes/notePage/create-400.yml")
     def test_create_400(self, notePage_dict):
@@ -41,6 +42,20 @@ class TestNotePage:
 
         assert isinstance(notePage, NotePage)
         assert message == "Error: Invalid engagements ID"
+
+    @vcr.use_cassette("tests/vcr_cassettes/notePage/get-200.yml")
+    def test_get_200(self, notePage_dict):
+        """Test an API call to getting a Note Page."""
+        notepad = NotePage.get("1ab5Mqoy")
+
+        assert isinstance(notepad, NotePage)
+        assert notepad.to_dict() == notePage_dict
+
+    @vcr.use_cassette("tests/vcr_cassettes/notePage/get-400.yml")
+    def test_get_400(self, notePage_dict):
+        """Test an API call to fail at getting a Note Page."""
+        with pytest.raises(SystemExit):
+            NotePage.get("abcd1234")
 
     def test_init_validation_pass(self, notePage_dict):
         """Test the init validation."""

@@ -1,0 +1,57 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: GET
+    uri: https://pentest.ws/api/v1/notepages/1ab5Mqoy
+  response:
+    body:
+      string: '{"id":"1ab5Mqoy","otype":"e","oid":"46yEw36g","title":"Engagement Test Note","content":"Some
+        text is here."}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 76b276a5aaffc43e-EWR
+      Cache-Control:
+      - no-store
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '103'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 16 Nov 2022 18:59:23 GMT
+      Etag:
+      - W/"67-UfgYWjXcd/vTq/tusN96cpUVmNk"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=1QEgPueKsZ32GVFX6l%2FguEOqR1vPI%2Fjwub1y3oy6AIHndGCbatgh7WkNJuG1sLhZ8i22HfO14Y%2FKsiYJ3qn4zvGt%2B53UQXNHmSHt7CinOeXm9Np7ejTs4D8mHJY%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
