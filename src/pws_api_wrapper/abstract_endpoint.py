@@ -8,7 +8,7 @@ from typing import Any, Dict
 from .session import session
 
 
-class AbstractEndpoint(object):
+class AbstractEndpoint:
     """Abstract class for all Pentest.ws API endpoints."""
 
     path: str = "https://pentest.ws/api/v1"
