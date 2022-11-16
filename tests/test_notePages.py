@@ -90,3 +90,27 @@ class TestNotePage:
         notePage_dict[attribute] = value
         with pytest.raises(SchemaError, match=error_message):
             NotePage(**notePage_dict)
+
+    @vcr.use_cassette("tests/vcr_cassettes/notePage/update-200.yml")
+    def test_update_200(self, notePage_dict):
+        """Test an API call to put an update to a NotePad."""
+        notePage_dict["content"] = "New Content"
+
+        notePage = NotePage(**notePage_dict)
+
+        message = notePage.update()
+
+        assert isinstance(notePage, NotePage)
+        assert notePage.to_dict() == notePage_dict
+        assert message == "Note Page Engagement Test Note (1ab5Mqoy) updated."
+
+    @vcr.use_cassette("tests/vcr_cassettes/notePage/update-400.yml")
+    def test_update_400(self, notePage_dict):
+        """Test an API call to update a Note Page with missing object."""
+        notePage_dict["id"] = "abcd1234"
+        notePage = NotePage(**notePage_dict)
+
+        message = notePage.update()
+
+        assert isinstance(notePage, NotePage)
+        assert message == "Error: Not Found"
