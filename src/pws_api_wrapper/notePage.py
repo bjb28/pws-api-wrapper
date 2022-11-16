@@ -1,5 +1,7 @@
 """NotePage Object."""
 
+from __future__ import annotations
+
 # Standard Python Libraries
 import json
 import re
@@ -7,6 +9,7 @@ import sys
 from typing import Any
 
 # Third-Party Libraries
+from requests import exceptions as requests_exceptions
 from requests.models import Response
 from schema import And, Optional, Or, Regex, Schema, SchemaError
 
@@ -111,3 +114,17 @@ class NotePage(AbstractEndpoint):
             message = f"Error: {response.json()['msg']}"
 
         return message
+
+    @staticmethod
+    def get(id: str) -> NotePage:
+        """Get a Note Page from the API."""
+        # TODO Custom Exception (Issue 1)
+        try:
+            response: Response = NotePage.pws_session.get(
+                f"{AbstractEndpoint.path}/notepages/{id}"
+            )
+            response.raise_for_status()
+        except requests_exceptions.HTTPError as err:
+            raise SystemExit(err)
+        else:
+            return NotePage(**response.json())
