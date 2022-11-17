@@ -1,0 +1,63 @@
+interactions:
+- request:
+    body: '{"finding_id": "01", "title": "Test Finding", "environment": "Web App",
+      "category": "Injection", "risk_level": "Critical", "cvss2_str": "AV:N/AC:L/Au:S/C:P/I:P/A:N",
+      "cvss3_str": "AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N", "dread": ["9  Admin data",
+      "10 Very easy", "9  Simple proxy", "10 All users", "5  HTTP requests"], "background":
+      "html", "desc_brief": "html", "desc_full": "html", "impact_brief": "html", "impact_full":
+      "html", "reco_brief": "html", "reco_full": "html", "reco_effort": "html", "targets":
+      "html", "references": "html", "evidence": "html", "validation_steps": "html",
+      "remediation_log": "html"}'
+    headers:
+      Content-Length:
+      - '610'
+      Content-Type:
+      - application/json
+      X-API-KEY:
+      - SecretAPIKey
+      accept:
+      - application/json
+    method: POST
+    uri: https://pentest.ws/api/v1/e/46yEw36g/findings
+  response:
+    body:
+      string: '{"id":"nDa0BVxK"}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 76b55b4f6e428cb1-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 17 Nov 2022 03:25:00 GMT
+      Etag:
+      - W/"11-ngEHr5INQ+tyzbdwimPOTfFyrvM"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=lmy%2BhHVaSTFOyBTOBcevoKJG0d0H%2B6F6nmBSmu9HVVsTAr9Wv8IIeQAZZpkKVwF79rfpg9GDwV5liGITTZM3ODfuPiz1jcJw7MxHQcn5OrnPmIf%2F8NzDaFQJaq0%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
