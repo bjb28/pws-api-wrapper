@@ -38,6 +38,7 @@ class AbstractEndpoint:
                 dictionary[attribute] = getattr(self, attribute)
             elif (
                 isinstance(getattr(self, attribute), bool)
+                or isinstance(getattr(self, attribute), float)
                 or isinstance(getattr(self, attribute), int)
                 or isinstance(getattr(self, attribute), list)
             ):
