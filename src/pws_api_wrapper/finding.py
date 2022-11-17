@@ -17,7 +17,7 @@ from .abstract_endpoint import AbstractEndpoint
 
 
 class Finding(AbstractEndpoint):
-    """Finding Objects for Pentest.ws API
+    """Finding Objects for Pentest.ws API.
 
     Attributes:
         id (str): The finding id from pentest.ws.
