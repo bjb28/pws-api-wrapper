@@ -165,3 +165,26 @@ class Finding(AbstractEndpoint):
             # Creates and engagement_path if eid is provided.
             self.engagement_path: str = f"{AbstractEndpoint.path}/e/{self.eid}/findings"
 
+    def create(self) -> str:
+        """Create a Finding in pentest.ws."""
+        self.pws_session.headers["Content-Type"] = "application/json"
+
+        finding_dict: dict = self.to_dict()
+        del finding_dict["eid"]  # Drop eid as the API does not accept it.
+
+        finding_data: str = json.dumps(finding_dict)
+
+        # TODO Custom Exception (Issue 1)
+        response: Response = self.pws_session.post(
+            self.engagement_path, headers=self.pws_session.headers, data=finding_data
+        )
+
+        # TODO Custom Exception (Issue 1)
+        if response.status_code == 200:
+            self.id = response.json()["id"]
+            # FIXME The next line is flagged by mypy for NotePage not having an attribute "title".
+            message: str = f"Finding {self.title} ({self.id}) created."  # type: ignore
+        elif response.status_code == 400:
+            message = f"Error: {response.json()['msg']}"
+
+        return message
