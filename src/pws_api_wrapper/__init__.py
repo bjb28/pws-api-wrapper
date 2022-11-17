@@ -6,6 +6,7 @@
 from ._version import __version__  # noqa: F401
 from .abstract_endpoint import AbstractEndpoint  # noqa: F401
 from .engagement import Engagement  # noqa: F401
+from .finding import Finding  # noqa: F401
 from .host import Host  # noqa: F401
 from .notePage import NotePage  # noqa: F401
 from .port import Port  # noqa: F401
