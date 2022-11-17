@@ -85,6 +85,44 @@ def engagement_object_no_created_at():
 
 
 @pytest.fixture
+def finding_dict():
+    """Return a Finding dictionary."""
+    return {
+        "id": "abdc1234",
+        "eid": "46yEw36g",
+        "finding_id": "01",
+        "title": "Test Finding",
+        "environment": "Web App",
+        "category": "Injection",
+        "risk_level": "Critical",
+        "cvss2_num": 5.5,
+        "cvss2_str": "AV:N/AC:L/Au:S/C:P/I:P/A:N",
+        "cvss3_num": 6.4,
+        "cvss3_str": "AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+        "dread": [
+            "9  Admin data",
+            "10 Very easy",
+            "9  Simple proxy",
+            "10 All users",
+            "5  HTTP requests",
+        ],
+        "background": "html",
+        "desc_brief": "html",
+        "desc_full": "html",
+        "impact_brief": "html",
+        "impact_full": "html",
+        "reco_brief": "html",
+        "reco_full": "html",
+        "reco_effort": "html",
+        "targets": "html",
+        "references": "html",
+        "evidence": "html",
+        "validation_steps": "html",
+        "remediation_log": "html",
+    }
+
+
+@pytest.fixture
 def host_dict():
     """Return a Host dictionary."""
     return {
